@@ -1,233 +1,170 @@
-/* ==========================================
-   AIDEN PACE GRAPHICS
-   JAVASCRIPT
-========================================== */
+// ==========================================
+// AIDEN PACE GRAPHICS - MAIN JAVASCRIPT
+// ==========================================
 
 
-/* ==========================================
-   DARK / LIGHT MODE
-========================================== */
+// ---------- DARK / LIGHT MODE ----------
 
 const themeToggle = document.getElementById("themeToggle");
 
-const savedTheme = localStorage.getItem("aidenpace-theme");
+const savedTheme = localStorage.getItem("apg-theme");
 
-const systemDark =
-    window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-
-/*
-   Priority:
-
-   1. User's saved preference
-   2. Device preference
-   3. Light mode
-*/
-
-if (
-    savedTheme === "dark" ||
-    (!savedTheme && systemDark)
-) {
-
+if (savedTheme === "dark") {
     document.body.classList.add("dark");
-
 }
-
-
-function updateThemeIcon() {
-
-    const icon = themeToggle.querySelector("i");
-
-    if (document.body.classList.contains("dark")) {
-
-        icon.className = "fa-solid fa-sun";
-
-        themeToggle.setAttribute(
-            "aria-label",
-            "Switch to light mode"
-        );
-
-    } else {
-
-        icon.className = "fa-solid fa-moon";
-
-        themeToggle.setAttribute(
-            "aria-label",
-            "Switch to dark mode"
-        );
-
-    }
-
-}
-
 
 updateThemeIcon();
-
 
 themeToggle.addEventListener("click", () => {
 
     document.body.classList.toggle("dark");
 
-    const dark =
-        document.body.classList.contains("dark");
+    const isDark = document.body.classList.contains("dark");
 
     localStorage.setItem(
-        "aidenpace-theme",
-        dark ? "dark" : "light"
+        "apg-theme",
+        isDark ? "dark" : "light"
     );
 
     updateThemeIcon();
-
 });
 
 
-/* ==========================================
-   MOBILE MENU
-========================================== */
+function updateThemeIcon() {
 
-const menuToggle =
-    document.getElementById("menuToggle");
+    if (document.body.classList.contains("dark")) {
+        themeToggle.textContent = "☀";
+        themeToggle.setAttribute(
+            "aria-label",
+            "Switch to light mode"
+        );
+    } else {
+        themeToggle.textContent = "☾";
+        themeToggle.setAttribute(
+            "aria-label",
+            "Switch to dark mode"
+        );
+    }
+}
 
-const navLinks =
-    document.getElementById("navLinks");
 
+// ---------- MOBILE MENU ----------
+
+const menuToggle = document.getElementById("menuToggle");
+const nav = document.querySelector("nav");
 
 menuToggle.addEventListener("click", () => {
 
-    navLinks.classList.toggle("active");
+    nav.classList.toggle("mobile-open");
 
-    const icon =
-        menuToggle.querySelector("i");
+    if (nav.classList.contains("mobile-open")) {
 
-    if (navLinks.classList.contains("active")) {
-
-        icon.className = "fa-solid fa-xmark";
+        nav.style.display = "flex";
+        nav.style.position = "absolute";
+        nav.style.top = "72px";
+        nav.style.left = "0";
+        nav.style.right = "0";
+        nav.style.padding = "25px";
+        nav.style.background = "var(--bg)";
+        nav.style.flexDirection = "column";
+        nav.style.gap = "20px";
+        nav.style.borderBottom =
+            "1px solid var(--line)";
 
     } else {
 
-        icon.className = "fa-solid fa-bars";
+        nav.removeAttribute("style");
 
     }
 
 });
 
 
-/*
-   Close mobile menu
-   when a navigation link
-   is clicked.
-*/
+// ---------- CLOSE MOBILE MENU AFTER CLICK ----------
 
-document
-    .querySelectorAll(".nav-links a")
-    .forEach(link => {
+const navigationLinks =
+    document.querySelectorAll("nav a");
 
-        link.addEventListener("click", () => {
+navigationLinks.forEach(link => {
 
-            navLinks.classList.remove("active");
+    link.addEventListener("click", () => {
 
-            menuToggle
-                .querySelector("i")
-                .className =
-                "fa-solid fa-bars";
+        nav.classList.remove("mobile-open");
 
+        if (window.innerWidth <= 1000) {
+            nav.removeAttribute("style");
+        }
+
+    });
+
+});
+
+
+// ---------- SMOOTH SCROLL ----------
+
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+
+    link.addEventListener("click", function(event) {
+
+        const targetId =
+            this.getAttribute("href");
+
+        const target =
+            document.querySelector(targetId);
+
+        if (!target) return;
+
+        event.preventDefault();
+
+        target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
         });
 
     });
 
+});
 
-/* ==========================================
-   NAVBAR SCROLL EFFECT
-========================================== */
 
-const navbar =
-    document.getElementById("navbar");
+// ---------- NAVBAR SHADOW ON SCROLL ----------
 
+const header =
+    document.querySelector(".site-header");
 
 window.addEventListener("scroll", () => {
 
     if (window.scrollY > 40) {
 
-        navbar.style.boxShadow =
-            "0 10px 40px rgba(0,0,0,.08)";
+        header.style.boxShadow =
+            "0 10px 30px rgba(0,0,0,0.08)";
 
     } else {
 
-        navbar.style.boxShadow = "none";
+        header.style.boxShadow = "none";
 
     }
 
 });
 
 
-/* ==========================================
-   SYSTEM THEME CHANGES
-========================================== */
-
-if (window.matchMedia) {
-
-    window
-        .matchMedia("(prefers-color-scheme: dark)")
-        .addEventListener("change", event => {
-
-            /*
-               Only follow the system if
-               the user hasn't manually chosen
-               a theme.
-            */
-
-            if (
-                !localStorage.getItem(
-                    "aidenpace-theme"
-                )
-            ) {
-
-                if (event.matches) {
-
-                    document.body
-                        .classList
-                        .add("dark");
-
-                } else {
-
-                    document.body
-                        .classList
-                        .remove("dark");
-
-                }
-
-                updateThemeIcon();
-
-            }
-
-        });
-
-}
-
-
-/* ==========================================
-   SIMPLE SCROLL REVEAL
-========================================== */
+// ---------- SCROLL REVEAL ANIMATION ----------
 
 const revealElements =
     document.querySelectorAll(
-        ".service-card, .portfolio-item, .why-card, .contact-row"
+        ".section, .project, .service-list article, .dark-panel, .contact-cards a"
     );
-
 
 const revealObserver =
     new IntersectionObserver(
-        entries => {
+        (entries) => {
 
             entries.forEach(entry => {
 
                 if (entry.isIntersecting) {
 
-                    entry.target.style.opacity = "1";
-
-                    entry.target.style.transform =
-                        "translateY(0)";
+                    entry.target.classList.add(
+                        "revealed"
+                    );
 
                     revealObserver.unobserve(
                         entry.target
@@ -243,17 +180,137 @@ const revealObserver =
         }
     );
 
-
 revealElements.forEach(element => {
 
-    element.style.opacity = "0";
-
-    element.style.transform =
-        "translateY(25px)";
-
-    element.style.transition =
-        "opacity .7s ease, transform .7s ease";
+    element.classList.add("reveal");
 
     revealObserver.observe(element);
 
 });
+
+
+// ---------- PARALLAX HERO GRAPHICS ----------
+
+const heroArt =
+    document.querySelector(".hero-art");
+
+const frontCard =
+    document.querySelector(".front-card");
+
+const backCard =
+    document.querySelector(".back-card");
+
+window.addEventListener("mousemove", (event) => {
+
+    if (!heroArt || window.innerWidth < 900) {
+        return;
+    }
+
+    const x =
+        (window.innerWidth / 2 - event.clientX) / 70;
+
+    const y =
+        (window.innerHeight / 2 - event.clientY) / 70;
+
+    frontCard.style.transform =
+        `rotate(-4deg) translate(${x}px, ${y}px)`;
+
+    backCard.style.transform =
+        `rotate(7deg) translate(${-x}px, ${-y}px)`;
+
+});
+
+
+// ---------- CURRENT YEAR ----------
+
+const year =
+    document.querySelector("footer small");
+
+if (year) {
+
+    const currentYear =
+        new Date().getFullYear();
+
+    year.textContent =
+        `© ${currentYear} Aiden Pace Graphics. All rights reserved.`;
+
+}
+
+
+// ---------- WHATSAPP QUOTE BUTTON ----------
+
+const quoteButton =
+    document.querySelector(
+        '.final-cta a[href*="wa.me"]'
+    );
+
+if (quoteButton) {
+
+    quoteButton.addEventListener("click", () => {
+
+        console.log(
+            "Opening Aiden Pace Graphics WhatsApp..."
+        );
+
+    });
+
+}
+
+
+// ---------- CONTACT CARD HOVER ----------
+
+const contactCards =
+    document.querySelectorAll(
+        ".contact-cards a"
+    );
+
+contactCards.forEach(card => {
+
+    card.addEventListener("mouseenter", () => {
+
+        card.style.transform =
+            "translateX(6px)";
+
+    });
+
+    card.addEventListener("mouseleave", () => {
+
+        card.style.transform =
+            "translateX(0)";
+
+    });
+
+});
+
+
+// ---------- HANDLE WINDOW RESIZE ----------
+
+window.addEventListener("resize", () => {
+
+    if (window.innerWidth > 1000) {
+
+        nav.classList.remove("mobile-open");
+
+        nav.removeAttribute("style");
+
+    }
+
+});
+
+
+// ---------- PAGE LOADED ----------
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        document.body.classList.add(
+            "page-loaded"
+        );
+
+        console.log(
+            "Aiden Pace Graphics website loaded successfully."
+        );
+
+    }
+);
