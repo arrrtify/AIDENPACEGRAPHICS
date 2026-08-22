@@ -1,60 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description"
-          content="Aiden Pace Graphics — Design, Print & Brand solutions.">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Aiden Pace Graphics — Design, Print and Brand."
+    >
 
     <title>Aiden Pace Graphics | Design • Print • Brand</title>
 
-    <!-- Google Font -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <!-- Icons -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
 
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
+
 <body>
 
-<!-- =========================
+<!-- =====================================================
      NAVIGATION
-========================= -->
+===================================================== -->
 
-<header class="navbar" id="navbar">
+<header class="header">
 
-    <a href="#home" class="brand">
-        <img src="images/logo.png" alt="Aiden Pace Graphics logo">
+    <a href="#home" class="logo">
+        <img
+            src="images/logo.png"
+            alt="Aiden Pace Graphics logo"
+        >
+
+        <span>AIDEN PACE</span>
     </a>
 
-    <nav class="nav-links" id="navLinks">
+
+    <nav class="desktop-nav">
+
         <a href="#home">Home</a>
-        <a href="#services">Services</a>
-        <a href="#work">Our Work</a>
+
         <a href="#about">About</a>
+
+        <a href="#work">Work</a>
+
+        <a href="#services">Services</a>
+
         <a href="#contact">Contact</a>
 
-        <a href="#quote" class="nav-quote">
-            Get a Quote <i class="fa-solid fa-arrow-right"></i>
-        </a>
     </nav>
 
-    <div class="nav-actions">
 
-        <button class="theme-toggle" id="themeToggle"
-                aria-label="Toggle dark mode">
-            <i class="fa-solid fa-moon"></i>
+    <div class="header-actions">
+
+        <button
+            id="themeToggle"
+            class="theme-toggle"
+            aria-label="Toggle dark mode"
+        >
+            ☾
         </button>
 
-        <button class="menu-toggle" id="menuToggle"
-                aria-label="Open navigation">
-            <i class="fa-solid fa-bars"></i>
+
+        <button
+            id="menuToggle"
+            class="menu-toggle"
+            aria-label="Open menu"
+        >
+            ☰
         </button>
 
     </div>
@@ -62,104 +87,89 @@
 </header>
 
 
-<!-- =========================
-     FLOATING SOCIALS
-========================= -->
+<!-- MOBILE MENU -->
 
-<div class="floating-socials">
+<div id="mobileMenu" class="mobile-menu">
 
-    <a href="https://wa.me/254740752833?text=Hi%20Aiden%20Pace%20Graphics%2C%20I'd%20like%20to%20make%20an%20inquiry."
-       target="_blank"
-       class="float whatsapp"
-       aria-label="WhatsApp 1">
+    <button
+        id="closeMenu"
+        class="close-menu"
+    >
+        ×
+    </button>
 
-        <i class="fa-brands fa-whatsapp"></i>
-        <span>WhatsApp 1</span>
+    <div class="mobile-menu-title">
+        AIDEN PACE GRAPHICS
+    </div>
 
-    </a>
+    <a href="#home">Home</a>
 
+    <a href="#about">About</a>
 
-    <a href="https://wa.me/254740880180?text=Hi%20Aiden%20Pace%20Graphics%2C%20I'd%20like%20to%20make%20an%20inquiry."
-       target="_blank"
-       class="float whatsapp"
-       aria-label="WhatsApp 2">
+    <a href="#work">Work</a>
 
-        <i class="fa-brands fa-whatsapp"></i>
-        <span>WhatsApp 2</span>
+    <a href="#services">Services</a>
 
-    </a>
-
-
-    <a href="mailto:aidenpacegraphics@gmail.com"
-       class="float email"
-       aria-label="Email">
-
-        <i class="fa-solid fa-envelope"></i>
-        <span>Email</span>
-
-    </a>
-
-
-    <a href="https://www.instagram.com/aidenpacegraphics/"
-       target="_blank"
-       class="float instagram"
-       aria-label="Instagram">
-
-        <i class="fa-brands fa-instagram"></i>
-        <span>Instagram</span>
-
-    </a>
-
-
-    <a href="https://vm.tiktok.com/ZS9kvvV59qtnf-1lkNV/"
-       target="_blank"
-       class="float tiktok"
-       aria-label="TikTok">
-
-        <i class="fa-brands fa-tiktok"></i>
-        <span>TikTok</span>
-
-    </a>
+    <a href="#contact">Contact</a>
 
 </div>
 
 
-<!-- =========================
-     HERO
-========================= -->
 
 <main>
 
-<section class="hero" id="home">
 
-    <div class="hero-content">
+<!-- =====================================================
+     HERO
+===================================================== -->
 
-        <div class="eyebrow">
-            <span></span>
+<section id="home" class="hero section">
+
+    <div class="hero-left">
+
+        <p class="eyebrow">
             DESIGN • PRINT • BRAND
-        </div>
+        </p>
+
 
         <h1>
-            We make your
-            <span>ideas</span>
-            impossible to ignore.
+            Aiden<br>
+            <span>Pace.</span>
         </h1>
 
-        <p>
-            Creative graphic design, professional printing and
-            powerful branding solutions built to make your business
-            stand out.
+
+        <h2>
+            Creative design,
+            printing & branding
+            that makes your
+            business stand out.
+        </h2>
+
+
+        <p class="hero-description">
+            Aiden Pace Graphics creates bold visual
+            identities, promotional designs and
+            professional print materials for businesses,
+            events and individuals.
         </p>
+
 
         <div class="hero-buttons">
 
-            <a href="#work" class="btn primary">
-                Explore Our Work
-                <i class="fa-solid fa-arrow-right"></i>
+            <a
+                href="#work"
+                class="primary-button"
+            >
+                Explore our work
+                <span>↗</span>
             </a>
 
-            <a href="#quote" class="btn secondary">
-                Start a Project
+
+            <a
+                href="#contact"
+                class="secondary-button"
+            >
+                Get in touch
             </a>
 
         </div>
@@ -167,23 +177,34 @@
     </div>
 
 
-    <div class="hero-visual">
+    <div class="hero-right">
 
-        <div class="visual-card card-one">
-            <div class="fake-design">
-                <span>CREATE</span>
-                <strong>YOUR<br>BRAND</strong>
+        <div class="hero-image-card">
+
+            <img
+                src="images/work-1.jpg"
+                alt="Aiden Pace Graphics featured work"
+            >
+
+            <div class="image-overlay">
+
+                <span>FEATURED</span>
+
+                <strong>
+                    Creative<br>
+                    Direction
+                </strong>
+
+                <small>
+                    Aiden Pace Graphics
+                </small>
+
             </div>
+
         </div>
 
-        <div class="visual-card card-two">
-            <div class="fake-design blue-design">
-                <small>APG</small>
-                <strong>DESIGN<br>MATTERS.</strong>
-            </div>
-        </div>
 
-        <div class="hero-circle">
+        <div class="floating-badge">
             AP
         </div>
 
@@ -192,372 +213,553 @@
 </section>
 
 
-<!-- =========================
-     MARQUEE
-========================= -->
 
-<section class="marquee">
+<!-- =====================================================
+     FOCUS STRIP
+===================================================== -->
 
-    <div class="marquee-track">
+<section class="focus-strip">
 
-        <span>DESIGN</span>
-        <b>✦</b>
-        <span>PRINT</span>
-        <b>✦</b>
-        <span>BRAND</span>
-        <b>✦</b>
-        <span>CREATE</span>
-        <b>✦</b>
-        <span>DESIGN</span>
-        <b>✦</b>
-        <span>PRINT</span>
-        <b>✦</b>
-        <span>BRAND</span>
+    <div class="focus-intro">
+        <span>03</span>
+        <small>FOCUS AREAS</small>
+    </div>
+
+
+    <div class="focus-item">
+
+        <span>01</span>
+
+        <strong>Design</strong>
+
+        <small>
+            Creative visuals
+        </small>
+
+    </div>
+
+
+    <div class="focus-item">
+
+        <span>02</span>
+
+        <strong>Print</strong>
+
+        <small>
+            Quality production
+        </small>
+
+    </div>
+
+
+    <div class="focus-item">
+
+        <span>03</span>
+
+        <strong>Brand</strong>
+
+        <small>
+            Visual identity
+        </small>
+
+    </div>
+
+
+    <div class="availability">
+
+        <span class="status-dot"></span>
+
+        Available for projects
 
     </div>
 
 </section>
 
 
-<!-- =========================
-     SERVICES
-========================= -->
 
-<section class="section services" id="services">
-
-    <div class="section-heading">
-
-        <div>
-            <span class="section-number">01 / SERVICES</span>
-
-            <h2>
-                What we
-                <span>create.</span>
-            </h2>
-        </div>
-
-        <p>
-            From the first idea to the final printed product,
-            Aiden Pace Graphics helps turn concepts into visuals
-            that people remember.
-        </p>
-
-    </div>
-
-
-    <div class="service-grid">
-
-        <article class="service-card">
-
-            <div class="service-top">
-                <span>01</span>
-                <i class="fa-solid fa-pen-nib"></i>
-            </div>
-
-            <h3>Graphic Design</h3>
-
-            <p>
-                Logos, posters, flyers, invitations,
-                certificates, social media graphics and more.
-            </p>
-
-            <a href="#quote">
-                Request a design
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
-
-        </article>
-
-
-        <article class="service-card featured">
-
-            <div class="service-top">
-                <span>02</span>
-                <i class="fa-solid fa-print"></i>
-            </div>
-
-            <h3>Printing</h3>
-
-            <p>
-                Business cards, banners, stickers, T-shirts,
-                stationery, packaging and other printed products.
-            </p>
-
-            <a href="#quote">
-                Request printing
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
-
-        </article>
-
-
-        <article class="service-card">
-
-            <div class="service-top">
-                <span>03</span>
-                <i class="fa-solid fa-cube"></i>
-            </div>
-
-            <h3>Branding</h3>
-
-            <p>
-                Vehicle branding, signage, business branding,
-                merchandise and custom branding solutions.
-            </p>
-
-            <a href="#quote">
-                Build my brand
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
-
-        </article>
-
-
-        <article class="service-card">
-
-            <div class="service-top">
-                <span>04</span>
-                <i class="fa-solid fa-wand-magic-sparkles"></i>
-            </div>
-
-            <h3>Custom Projects</h3>
-
-            <p>
-                Have something different in mind?
-                Tell us what you need and we'll work with you.
-            </p>
-
-            <a href="#quote">
-                Tell us your idea
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
-
-        </article>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     PORTFOLIO
-========================= -->
-
-<section class="section portfolio" id="work">
-
-    <div class="section-heading">
-
-        <div>
-            <span class="section-number">02 / SELECTED WORK</span>
-
-            <h2>
-                Ideas we've
-                <span>brought to life.</span>
-            </h2>
-        </div>
-
-        <p>
-            Our portfolio will showcase real Aiden Pace Graphics
-            projects. Product images can be added here later.
-        </p>
-
-    </div>
-
-
-    <div class="portfolio-grid">
-
-        <div class="portfolio-item large placeholder">
-            <span>PROJECT 01</span>
-            <h3>Poster Design</h3>
-            <small>IMAGE COMING SOON</small>
-        </div>
-
-
-        <div class="portfolio-item placeholder">
-            <span>PROJECT 02</span>
-            <h3>T-Shirt Design</h3>
-            <small>IMAGE COMING SOON</small>
-        </div>
-
-
-        <div class="portfolio-item placeholder">
-            <span>PROJECT 03</span>
-            <h3>Business Branding</h3>
-            <small>IMAGE COMING SOON</small>
-        </div>
-
-
-        <div class="portfolio-item wide placeholder">
-            <span>PROJECT 04</span>
-            <h3>Banner & Signage</h3>
-            <small>IMAGE COMING SOON</small>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
+<!-- =====================================================
      ABOUT
-========================= -->
+===================================================== -->
 
-<section class="about-section" id="about">
+<section id="about" class="section about">
 
-    <div class="about-number">
-        03
+    <div class="section-number">
+        01
     </div>
+
+
+    <div class="section-title">
+        <small>GET TO KNOW US</small>
+
+        <h2>
+            About<br>
+            Aiden Pace
+        </h2>
+    </div>
+
 
     <div class="about-content">
 
-        <span class="section-number">ABOUT AIDEN PACE GRAPHICS</span>
+        <div class="about-main">
+
+            <span class="label">
+                PROFILE
+            </span>
+
+            <h3>
+                Turning ideas into
+                visuals that people
+                remember.
+            </h3>
+
+            <p>
+                Aiden Pace Graphics is a creative
+                design and printing studio focused
+                on helping businesses, organisations
+                and individuals communicate through
+                strong visual design.
+            </p>
+
+            <p>
+                From a simple poster to a complete
+                brand identity, we combine creativity,
+                design and print to bring ideas to life.
+            </p>
+
+        </div>
+
+
+        <div class="about-cards">
+
+            <article>
+
+                <span>✦</span>
+
+                <small>APPROACH</small>
+
+                <h4>
+                    Creative
+                    Thinking
+                </h4>
+
+            </article>
+
+
+            <article>
+
+                <span>◈</span>
+
+                <small>QUALITY</small>
+
+                <h4>
+                    Professional
+                    Finish
+                </h4>
+
+            </article>
+
+
+            <article>
+
+                <span>↗</span>
+
+                <small>MISSION</small>
+
+                <h4>
+                    Make brands
+                    memorable
+                </h4>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     WORK
+===================================================== -->
+
+<section id="work" class="section work">
+
+    <div class="section-number">
+        02
+    </div>
+
+
+    <div class="section-title work-heading">
+
+        <small>SELECTED WORK</small>
 
         <h2>
-            Your vision.
-            <span>Our creativity.</span>
+            Our<br>
+            Portfolio
         </h2>
 
         <p>
-            Aiden Pace Graphics is a creative design, printing and
-            branding company focused on helping individuals,
-            businesses and organizations turn ideas into powerful
-            visual experiences.
+            A collection of creative work produced
+            by Aiden Pace Graphics.
         </p>
-
-        <p>
-            Whether you need a striking poster, professional
-            business cards, branded clothing or a complete visual
-            identity, we're here to bring your idea to life.
-        </p>
-
-        <a href="#quote" class="btn light-btn">
-            Work With Us
-            <i class="fa-solid fa-arrow-right"></i>
-        </a>
 
     </div>
+
+
+    <!-- FILTERS -->
+
+    <div class="filters">
+
+        <button
+            class="filter active"
+            data-filter="all"
+        >
+            All
+        </button>
+
+        <button
+            class="filter"
+            data-filter="design"
+        >
+            Design
+        </button>
+
+        <button
+            class="filter"
+            data-filter="branding"
+        >
+            Branding
+        </button>
+
+        <button
+            class="filter"
+            data-filter="print"
+        >
+            Print
+        </button>
+
+    </div>
+
+
+    <!-- PROJECT GRID -->
+
+    <div class="project-grid">
+
+
+        <article
+            class="project featured"
+            data-category="branding"
+        >
+
+            <div class="project-image">
+
+                <img
+                    src="images/work-1.jpg"
+                    alt="Brand identity project"
+                >
+
+            </div>
+
+
+            <div class="project-info">
+
+                <div>
+
+                    <small>
+                        01 • BRANDING
+                    </small>
+
+                    <h3>
+                        Brand Identity
+                    </h3>
+
+                </div>
+
+                <span>↗</span>
+
+            </div>
+
+        </article>
+
+
+
+        <article
+            class="project"
+            data-category="design"
+        >
+
+            <div class="project-image">
+
+                <img
+                    src="images/work-2.jpg"
+                    alt="Graphic design project"
+                >
+
+            </div>
+
+
+            <div class="project-info">
+
+                <div>
+
+                    <small>
+                        02 • DESIGN
+                    </small>
+
+                    <h3>
+                        Graphic Design
+                    </h3>
+
+                </div>
+
+                <span>↗</span>
+
+            </div>
+
+        </article>
+
+
+
+        <article
+            class="project"
+            data-category="print"
+        >
+
+            <div class="project-image">
+
+                <img
+                    src="images/work-3.jpg"
+                    alt="Print design project"
+                >
+
+            </div>
+
+
+            <div class="project-info">
+
+                <div>
+
+                    <small>
+                        03 • PRINT
+                    </small>
+
+                    <h3>
+                        Print Work
+                    </h3>
+
+                </div>
+
+                <span>↗</span>
+
+            </div>
+
+        </article>
+
+
+
+        <article
+            class="project wide"
+            data-category="design"
+        >
+
+            <div class="project-image">
+
+                <img
+                    src="images/work-4.jpg"
+                    alt="Poster design project"
+                >
+
+            </div>
+
+
+            <div class="project-info">
+
+                <div>
+
+                    <small>
+                        04 • DESIGN
+                    </small>
+
+                    <h3>
+                        Promotional Design
+                    </h3>
+
+                </div>
+
+                <span>↗</span>
+
+            </div>
+
+        </article>
+
+
+    </div>
+
+
+    <p class="more-work">
+        More projects will be added as the portfolio grows.
+    </p>
 
 </section>
 
 
-<!-- =========================
-     WHY US
-========================= -->
 
-<section class="section why-us">
+<!-- =====================================================
+     SERVICES
+===================================================== -->
 
-    <div class="section-heading">
+<section id="services" class="section services">
 
-        <div>
-            <span class="section-number">04 / WHY US</span>
-
-            <h2>
-                Built to make
-                <span>you stand out.</span>
-            </h2>
-        </div>
-
+    <div class="section-number">
+        03
     </div>
 
 
-    <div class="why-grid">
+    <div class="section-title">
 
-        <div class="why-card">
-            <strong>01</strong>
-            <h3>Creative</h3>
-            <p>Designs made around your idea, not a generic template.</p>
-        </div>
-
-        <div class="why-card">
-            <strong>02</strong>
-            <h3>Quality</h3>
-            <p>Professional visual work and quality printed products.</p>
-        </div>
-
-        <div class="why-card">
-            <strong>03</strong>
-            <h3>Reliable</h3>
-            <p>Clear communication from the first conversation to delivery.</p>
-        </div>
-
-        <div class="why-card">
-            <strong>04</strong>
-            <h3>Affordable</h3>
-            <p>Professional creative solutions without unnecessary costs.</p>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     CTA
-========================= -->
-
-<section class="cta" id="quote">
-
-    <div class="cta-content">
-
-        <span>05 / START A PROJECT</span>
+        <small>WHAT WE DO</small>
 
         <h2>
-            Got an idea?
-            <br>
-            <em>Let's make it real.</em>
+            Design.<br>
+            Print.<br>
+            Brand.
         </h2>
 
-        <p>
-            Tell us what you're looking for and let's create
-            something that gets noticed.
-        </p>
+    </div>
 
-        <div class="cta-buttons">
 
-            <a href="https://wa.me/254740752833?text=Hi%20Aiden%20Pace%20Graphics%2C%20I'd%20like%20to%20request%20a%20quote."
-               target="_blank"
-               class="btn cta-btn">
+    <div class="service-list">
 
-                <i class="fa-brands fa-whatsapp"></i>
-                Request a Quote
 
-            </a>
+        <article>
 
-            <a href="mailto:aidenpacegraphics@gmail.com"
-               class="btn cta-outline">
+            <div class="service-number">
+                01
+            </div>
 
-                <i class="fa-solid fa-envelope"></i>
-                Email Us
+            <div>
 
-            </a>
+                <h3>
+                    Graphic Design
+                </h3>
 
-        </div>
+                <p>
+                    Posters, flyers, social media graphics,
+                    invitations and other visual designs.
+                </p>
+
+            </div>
+
+            <span>↗</span>
+
+        </article>
+
+
+
+        <article>
+
+            <div class="service-number">
+                02
+            </div>
+
+            <div>
+
+                <h3>
+                    Printing
+                </h3>
+
+                <p>
+                    Turning finished designs into
+                    professional printed materials.
+                </p>
+
+            </div>
+
+            <span>↗</span>
+
+        </article>
+
+
+
+        <article>
+
+            <div class="service-number">
+                03
+            </div>
+
+            <div>
+
+                <h3>
+                    Branding
+                </h3>
+
+                <p>
+                    Visual identities that help businesses
+                    create a consistent and memorable presence.
+                </p>
+
+            </div>
+
+            <span>↗</span>
+
+        </article>
 
     </div>
 
 </section>
 
 
-<!-- =========================
+
+<!-- =====================================================
+     FEATURED STATEMENT
+===================================================== -->
+
+<section class="statement">
+
+    <p>
+        GREAT DESIGN
+    </p>
+
+    <h2>
+        Your idea.<br>
+        Our creativity.
+    </h2>
+
+    <span>
+        Aiden Pace Graphics
+    </span>
+
+</section>
+
+
+
+<!-- =====================================================
      CONTACT
-========================= -->
+===================================================== -->
 
-<section class="section contact" id="contact">
+<section id="contact" class="section contact">
 
-    <div class="section-heading">
+    <div class="section-number">
+        04
+    </div>
 
-        <div>
-            <span class="section-number">06 / CONTACT</span>
 
-            <h2>
-                Let's talk
-                <span>business.</span>
-            </h2>
-        </div>
+    <div class="contact-heading">
+
+        <small>
+            LET'S CONNECT
+        </small>
+
+        <h2>
+            Have a project<br>
+            or an idea?
+        </h2>
 
         <p>
-            Ready to start your next project?
-            Reach out to Aiden Pace Graphics.
+            Let's turn it into something people
+            can see, remember and connect with.
         </p>
 
     </div>
@@ -565,157 +767,254 @@
 
     <div class="contact-grid">
 
-        <div class="contact-details">
 
-            <a href="https://wa.me/254740752833"
-               target="_blank"
-               class="contact-row">
+        <!-- WHATSAPP -->
 
-                <div class="contact-icon">
-                    <i class="fa-brands fa-whatsapp"></i>
-                </div>
+        <a
+            href="https://wa.me/254740752833"
+            target="_blank"
+            class="contact-card"
+        >
 
-                <div>
-                    <small>WHATSAPP</small>
-                    <strong>0740 752833</strong>
-                </div>
+            <span>◉</span>
 
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <small>
+                DIRECT CONTACT
+            </small>
 
-            </a>
+            <h3>
+                WhatsApp
+            </h3>
 
+            <p>
+                0740 752 833
+            </p>
 
-            <a href="https://wa.me/254740880180"
-               target="_blank"
-               class="contact-row">
+            <strong>
+                ↗
+            </strong>
 
-                <div class="contact-icon">
-                    <i class="fa-brands fa-whatsapp"></i>
-                </div>
-
-                <div>
-                    <small>WHATSAPP</small>
-                    <strong>0740 880180</strong>
-                </div>
-
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-
-            </a>
+        </a>
 
 
-            <a href="mailto:aidenpacegraphics@gmail.com"
-               class="contact-row">
 
-                <div class="contact-icon">
-                    <i class="fa-solid fa-envelope"></i>
-                </div>
+        <!-- SECOND WHATSAPP -->
 
-                <div>
-                    <small>EMAIL</small>
-                    <strong>aidenpacegraphics@gmail.com</strong>
-                </div>
+        <a
+            href="https://wa.me/254740880180"
+            target="_blank"
+            class="contact-card"
+        >
 
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <span>◉</span>
 
-            </a>
+            <small>
+                WHATSAPP
+            </small>
 
+            <h3>
+                0740 880 180
+            </h3>
 
-            <a href="https://www.instagram.com/aidenpacegraphics/"
-               target="_blank"
-               class="contact-row">
+            <p>
+                Chat with Aiden Pace Graphics
+            </p>
 
-                <div class="contact-icon">
-                    <i class="fa-brands fa-instagram"></i>
-                </div>
+            <strong>
+                ↗
+            </strong>
 
-                <div>
-                    <small>INSTAGRAM</small>
-                    <strong>@aidenpacegraphics</strong>
-                </div>
-
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-
-            </a>
-
-        </div>
+        </a>
 
 
-        <div class="map-container">
 
-            <iframe
-                src="https://www.google.com/maps?q=Aiden%20Pace%20Graphics&output=embed"
-                loading="lazy"
-                allowfullscreen>
-            </iframe>
+        <!-- EMAIL -->
 
-            <a href="https://maps.app.goo.gl/gQ9ZPjvceDHvK4ih8"
-               target="_blank"
-               class="map-button">
+        <a
+            href="mailto:aidenpacegraphics@gmail.com"
+            class="contact-card"
+        >
 
-                <i class="fa-solid fa-location-arrow"></i>
-                Get Directions
+            <span>✉</span>
 
-            </a>
+            <small>
+                EMAIL
+            </small>
 
-        </div>
+            <h3>
+                Email us
+            </h3>
+
+            <p>
+                aidenpacegraphics@gmail.com
+            </p>
+
+            <strong>
+                ↗
+            </strong>
+
+        </a>
+
+
+
+        <!-- INSTAGRAM -->
+
+        <a
+            href="https://www.instagram.com/aidenpacegraphics/"
+            target="_blank"
+            class="contact-card"
+        >
+
+            <span>◎</span>
+
+            <small>
+                SOCIAL
+            </small>
+
+            <h3>
+                Instagram
+            </h3>
+
+            <p>
+                @aidenpacegraphics
+            </p>
+
+            <strong>
+                ↗
+            </strong>
+
+        </a>
+
+
+
+        <!-- TIKTOK -->
+
+        <a
+            href="https://vm.tiktok.com/ZS9kvvV59qtnf-1lkNV/"
+            target="_blank"
+            class="contact-card"
+        >
+
+            <span>♪</span>
+
+            <small>
+                SOCIAL
+            </small>
+
+            <h3>
+                TikTok
+            </h3>
+
+            <p>
+                Aiden Pace Graphics
+            </p>
+
+            <strong>
+                ↗
+            </strong>
+
+        </a>
 
     </div>
 
-</section>
-
-</main>
 
 
-<!-- =========================
-     FOOTER
-========================= -->
+    <!-- LOCATION -->
 
-<footer>
+    <div class="location">
 
-    <div class="footer-top">
+        <div>
 
-        <div class="footer-brand">
+            <small>
+                FIND US
+            </small>
 
-            <img src="images/logo.png"
-                 alt="Aiden Pace Graphics">
+            <h3>
+                Aiden Pace Graphics
+            </h3>
 
             <p>
-                DESIGN • PRINT • BRAND
+                Visit us at our studio.
             </p>
 
         </div>
 
 
-        <div class="footer-links">
+        <a
+            href="https://maps.app.goo.gl/gQ9ZPjvceDHvK4ih8"
+            target="_blank"
+            class="map-button"
+        >
+            Open location in Google Maps ↗
+        </a>
 
-            <div>
-                <h4>Explore</h4>
+    </div>
 
-                <a href="#home">Home</a>
-                <a href="#services">Services</a>
-                <a href="#work">Our Work</a>
-                <a href="#about">About</a>
-            </div>
+</section>
 
 
-            <div>
-                <h4>Connect</h4>
 
-                <a href="https://www.instagram.com/aidenpacegraphics/"
-                   target="_blank">
-                    Instagram
-                </a>
+</main>
 
-                <a href="https://vm.tiktok.com/ZS9kvvV59qtnf-1lkNV/"
-                   target="_blank">
-                    TikTok
-                </a>
 
-                <a href="mailto:aidenpacegraphics@gmail.com">
-                    Email
-                </a>
 
-            </div>
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="footer-top">
+
+        <div>
+
+            <a
+                href="#home"
+                class="footer-logo"
+            >
+
+                <img
+                    src="images/logo.png"
+                    alt="Aiden Pace Graphics"
+                >
+
+            </a>
+
+            <p>
+                Design • Print • Brand
+            </p>
+
+        </div>
+
+
+        <div class="footer-socials">
+
+            <a
+                href="https://www.instagram.com/aidenpacegraphics/"
+                target="_blank"
+            >
+                Instagram
+            </a>
+
+            <a
+                href="https://vm.tiktok.com/ZS9kvvV59qtnf-1lkNV/"
+                target="_blank"
+            >
+                TikTok
+            </a>
+
+            <a
+                href="https://wa.me/254740752833"
+                target="_blank"
+            >
+                WhatsApp
+            </a>
+
+            <a
+                href="mailto:aidenpacegraphics@gmail.com"
+            >
+                Email
+            </a>
 
         </div>
 
@@ -725,11 +1024,12 @@
     <div class="footer-bottom">
 
         <span>
-            © 2026 Aiden Pace Graphics. All rights reserved.
+            © <span id="year"></span>
+            Aiden Pace Graphics.
         </span>
 
         <span>
-            DESIGN • PRINT • BRAND
+            Design • Print • Brand
         </span>
 
     </div>
@@ -737,7 +1037,53 @@
 </footer>
 
 
+
+<!-- =====================================================
+     FLOATING CONTACT BUTTONS
+===================================================== -->
+
+<div class="floating-actions">
+
+    <a
+        href="https://wa.me/254740752833"
+        target="_blank"
+        title="WhatsApp"
+    >
+        WA
+    </a>
+
+
+    <a
+        href="mailto:aidenpacegraphics@gmail.com"
+        title="Email"
+    >
+        @
+    </a>
+
+
+    <a
+        href="https://www.instagram.com/aidenpacegraphics/"
+        target="_blank"
+        title="Instagram"
+    >
+        IG
+    </a>
+
+
+    <a
+        href="https://vm.tiktok.com/ZS9kvvV59qtnf-1lkNV/"
+        target="_blank"
+        title="TikTok"
+    >
+        TT
+    </a>
+
+</div>
+
+
+<!-- JAVASCRIPT -->
 <script src="script.js"></script>
 
 </body>
+
 </html>
