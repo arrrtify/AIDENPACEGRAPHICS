@@ -1,30 +1,19 @@
-/* =====================================================
-   AIDEN PACE GRAPHICS
-   JAVASCRIPT
-===================================================== */
-
-
-/* =====================================================
+/* =========================================
    DARK / LIGHT MODE
-===================================================== */
+========================================= */
 
 const themeToggle =
     document.getElementById("themeToggle");
 
-
 const savedTheme =
-    localStorage.getItem("aiden-pace-theme");
-
+    localStorage.getItem("aiden-theme");
 
 if (savedTheme === "dark") {
 
     document.body.classList.add("dark");
 
-    themeToggle.textContent = "☀";
-
-} else {
-
-    themeToggle.textContent = "☾";
+    themeToggle.innerHTML =
+        '<i class="fa-solid fa-sun"></i>';
 
 }
 
@@ -33,53 +22,54 @@ themeToggle.addEventListener("click", () => {
 
     document.body.classList.toggle("dark");
 
-
     const darkMode =
         document.body.classList.contains("dark");
 
-
     localStorage.setItem(
-        "aiden-pace-theme",
+        "aiden-theme",
         darkMode ? "dark" : "light"
     );
 
-
-    themeToggle.textContent =
-        darkMode ? "☀" : "☾";
+    themeToggle.innerHTML = darkMode
+        ? '<i class="fa-solid fa-sun"></i>'
+        : '<i class="fa-solid fa-moon"></i>';
 
 });
 
 
-
-/* =====================================================
+/* =========================================
    MOBILE MENU
-===================================================== */
+========================================= */
 
-const menuToggle =
-    document.getElementById("menuToggle");
-
+const menuButton =
+    document.getElementById("menuButton");
 
 const mobileMenu =
     document.getElementById("mobileMenu");
-
 
 const closeMenu =
     document.getElementById("closeMenu");
 
 
-menuToggle.addEventListener("click", () => {
+menuButton.addEventListener("click", () => {
 
-    mobileMenu.classList.add("open");
+    mobileMenu.classList.add("active");
+
+    document.body.style.overflow = "hidden";
 
 });
 
 
 closeMenu.addEventListener("click", () => {
 
-    mobileMenu.classList.remove("open");
+    mobileMenu.classList.remove("active");
+
+    document.body.style.overflow = "";
 
 });
 
+
+/* Close menu when link is clicked */
 
 document
     .querySelectorAll(".mobile-menu a")
@@ -87,21 +77,21 @@ document
 
         link.addEventListener("click", () => {
 
-            mobileMenu.classList.remove("open");
+            mobileMenu.classList.remove("active");
+
+            document.body.style.overflow = "";
 
         });
 
     });
 
 
-
-/* =====================================================
+/* =========================================
    PORTFOLIO FILTER
-===================================================== */
+========================================= */
 
 const filters =
     document.querySelectorAll(".filter");
-
 
 const projects =
     document.querySelectorAll(".project");
@@ -111,37 +101,53 @@ filters.forEach(filter => {
 
     filter.addEventListener("click", () => {
 
+        filters.forEach(item => {
 
-        filters.forEach(button => {
-
-            button.classList.remove("active");
+            item.classList.remove("active");
 
         });
 
-
         filter.classList.add("active");
 
-
-        const selected =
+        const category =
             filter.dataset.filter;
 
 
         projects.forEach(project => {
 
-            const category =
+            const projectCategory =
                 project.dataset.category;
 
 
             if (
-                selected === "all" ||
-                category === selected
+                category === "all" ||
+                projectCategory === category
             ) {
 
-                project.classList.remove("hide");
+                project.style.display = "";
 
-            } else {
+                setTimeout(() => {
 
-                project.classList.add("hide");
+                    project.style.opacity = "1";
+                    project.style.transform =
+                        "translateY(0)";
+
+                }, 20);
+
+            }
+
+            else {
+
+                project.style.opacity = "0";
+
+                project.style.transform =
+                    "translateY(20px)";
+
+                setTimeout(() => {
+
+                    project.style.display = "none";
+
+                }, 250);
 
             }
 
@@ -152,56 +158,42 @@ filters.forEach(filter => {
 });
 
 
+/* =========================================
+   SCROLL REVEAL
+========================================= */
 
-/* =====================================================
-   SMOOTH NAVIGATION
-===================================================== */
-
-document
-    .querySelectorAll('a[href^="#"]')
-    .forEach(link => {
-
-        link.addEventListener("click", event => {
-
-            const targetID =
-                link.getAttribute("href");
-
-
-            const target =
-                document.querySelector(targetID);
-
-
-            if (!target) return;
-
-
-            event.preventDefault();
-
-
-            target.scrollIntoView({
-
-                behavior: "smooth",
-
-                block: "start"
-
-            });
-
-        });
-
-    });
-
-
-
-/* =====================================================
-   REVEAL ANIMATIONS
-===================================================== */
-
-const animatedElements =
+const revealElements =
     document.querySelectorAll(
-        ".section, .project, .contact-card, .about-cards article, .service-list article"
+        ".project, .capability, .about-text, .about-stats"
     );
 
 
-animatedElements.forEach(element => {
+const observer =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add(
+                        "revealed"
+                    );
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold: 0.12
+        }
+
+    );
+
+
+revealElements.forEach(element => {
 
     element.style.opacity = "0";
 
@@ -211,184 +203,64 @@ animatedElements.forEach(element => {
     element.style.transition =
         "opacity .7s ease, transform .7s ease";
 
-});
-
-
-const observer =
-    new IntersectionObserver(
-        entries => {
-
-            entries.forEach(entry => {
-
-                if (
-                    entry.isIntersecting
-                ) {
-
-                    entry.target.style.opacity =
-                        "1";
-
-                    entry.target.style.transform =
-                        "translateY(0)";
-
-                    observer.unobserve(
-                        entry.target
-                    );
-
-                }
-
-            });
-
-        },
-        {
-            threshold: 0.12
-        }
-    );
-
-
-animatedElements.forEach(element => {
-
     observer.observe(element);
 
 });
 
 
+/* Add revealed style dynamically */
 
-/* =====================================================
-   HERO MOUSE PARALLAX
-===================================================== */
+const revealStyle =
+    document.createElement("style");
 
-const heroCard =
-    document.querySelector(
-        ".hero-image-card"
-    );
+revealStyle.innerHTML = `
 
-
-const badge =
-    document.querySelector(
-        ".floating-badge"
-    );
-
-
-document.addEventListener(
-    "mousemove",
-    event => {
-
-        if (
-            window.innerWidth < 900
-        ) return;
-
-
-        const x =
-            (window.innerWidth / 2 -
-                event.clientX) / 80;
-
-
-        const y =
-            (window.innerHeight / 2 -
-                event.clientY) / 80;
-
-
-        if (heroCard) {
-
-            heroCard.style.transform =
-                `rotate(2deg) translate(${x}px, ${y}px)`;
-
-        }
-
-
-        if (badge) {
-
-            badge.style.transform =
-                `translate(${-x}px, ${-y}px)`;
-
-        }
-
+    .revealed {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
     }
-);
+
+`;
+
+document.head.appendChild(revealStyle);
 
 
-
-/* =====================================================
-   CURRENT YEAR
-===================================================== */
-
-const year =
-    document.getElementById("year");
-
-
-if (year) {
-
-    year.textContent =
-        new Date().getFullYear();
-
-}
-
-
-
-/* =====================================================
-   HEADER SCROLL EFFECT
-===================================================== */
+/* =========================================
+   HEADER BACKGROUND ON SCROLL
+========================================= */
 
 const header =
     document.querySelector(".header");
 
 
-window.addEventListener(
-    "scroll",
-    () => {
+window.addEventListener("scroll", () => {
 
-        if (
-            window.scrollY > 50
-        ) {
+    if (window.scrollY > 50) {
 
-            header.style.boxShadow =
-                "0 12px 35px rgba(0,0,0,.07)";
+        header.style.boxShadow =
+            "0 10px 40px rgba(0,0,0,.08)";
 
-        } else {
+    } else {
 
-            header.style.boxShadow =
-                "none";
-
-        }
+        header.style.boxShadow = "none";
 
     }
-);
+
+});
 
 
+/* =========================================
+   CLOSE MOBILE MENU WITH ESC
+========================================= */
 
-/* =====================================================
-   CONTACT CARD FEEDBACK
-===================================================== */
+document.addEventListener("keydown", event => {
 
-document
-    .querySelectorAll(".contact-card")
-    .forEach(card => {
+    if (event.key === "Escape") {
 
-        card.addEventListener(
-            "mouseenter",
-            () => {
+        mobileMenu.classList.remove("active");
 
-                card.style.cursor =
-                    "pointer";
-
-            }
-        );
-
-    });
-
-
-
-/* =====================================================
-   PAGE LOADED
-===================================================== */
-
-window.addEventListener(
-    "load",
-    () => {
-
-        document.body.classList.add(
-            "loaded"
-        );
+        document.body.style.overflow = "";
 
     }
-);
+
+});
