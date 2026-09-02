@@ -1,1477 +1,494 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+/* =========================================================
+   AIDEN PACE GRAPHICS
+   MAIN JAVASCRIPT
+========================================================= */
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+document.addEventListener("DOMContentLoaded", () => {
 
-    <meta
-        name="description"
-        content="Aiden Pace Graphics — Creative design, printing and branding."
-    >
+    /* =====================================================
+       ELEMENTS
+    ===================================================== */
 
-    <meta name="theme-color" content="#f5f5f2">
+    const body = document.body;
 
-    <title>Aiden Pace Graphics | Design • Print • Brand</title>
+    const themeToggle =
+        document.getElementById("themeToggle");
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    const menuButton =
+        document.getElementById("menuButton");
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
+    const closeMenu =
+        document.getElementById("closeMenu");
 
-    <!-- Font Awesome -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
+    const mobileMenu =
+        document.getElementById("mobileMenu");
 
-    <link rel="stylesheet" href="style.css">
-</head>
+    const header =
+        document.getElementById("header");
 
-<body>
+    const themeIcon =
+        themeToggle?.querySelector("i");
 
-<!-- ================= HEADER ================= -->
 
-<header class="header" id="header">
+    /* =====================================================
+       THEME
+    ===================================================== */
 
-    <a href="#home" class="brand">
-        <img src="logo.jpeg" alt="Aiden Pace Graphics logo">
-    </a>
+    const savedTheme =
+        localStorage.getItem("aiden-theme");
 
-    <nav class="desktop-nav">
-        <a href="#home">Home</a>
-        <a href="#services">Services</a>
-        <a href="#work">Portfolio</a>
-        <a href="#products">Products</a>
-        <a href="#contact">Contact</a>
-    </nav>
+    const systemDark =
+        window.matchMedia(
+            "(prefers-color-scheme: dark)"
+        ).matches;
 
-    <div class="header-actions">
 
-        <button
-            id="themeToggle"
-            class="theme-button"
-            aria-label="Toggle dark mode"
-            title="Toggle theme"
-        >
-            <i class="fa-solid fa-moon"></i>
-        </button>
+    function updateThemeIcon() {
 
-        <a href="#contact" class="contact-button">
-            Get in touch
-            <span>↗</span>
-        </a>
+        if (!themeIcon || !themeToggle) {
+            return;
+        }
 
-        <button
-            class="menu-button"
-            id="menuButton"
-            aria-label="Open menu"
-            aria-expanded="false"
-        >
-            <i class="fa-solid fa-bars"></i>
-        </button>
+        const isDark =
+            body.classList.contains("dark");
 
-    </div>
+        themeIcon.className =
+            isDark
+                ? "fa-solid fa-sun"
+                : "fa-solid fa-moon";
 
-</header>
+        themeToggle.setAttribute(
+            "aria-label",
+            isDark
+                ? "Switch to light mode"
+                : "Switch to dark mode"
+        );
 
+        themeToggle.setAttribute(
+            "title",
+            isDark
+                ? "Switch to light mode"
+                : "Switch to dark mode"
+        );
 
-<!-- ================= MOBILE MENU ================= -->
+        const themeColor =
+            isDark
+                ? "#08090d"
+                : "#f5f5f2";
 
-<div class="mobile-menu" id="mobileMenu">
+        document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute(
+                "content",
+                themeColor
+            );
+    }
 
-    <button
-        class="close-menu"
-        id="closeMenu"
-        aria-label="Close menu"
-    >
-        <i class="fa-solid fa-xmark"></i>
-    </button>
 
-    <div class="mobile-menu-content">
+    if (
+        savedTheme === "dark" ||
+        (!savedTheme && systemDark)
+    ) {
 
-        <span>MENU</span>
+        body.classList.add("dark");
 
-        <a href="#home">Home</a>
-        <a href="#services">Services</a>
-        <a href="#work">Portfolio</a>
-        <a href="#products">Products</a>
-        <a href="#contact">Contact</a>
+    } else {
 
-    </div>
+        body.classList.remove("dark");
 
-</div>
+    }
 
+    updateThemeIcon();
 
-<main>
 
-<!-- ================= HERO ================= -->
+    themeToggle?.addEventListener(
+        "click",
+        () => {
 
-<section class="hero section" id="home">
+            body.classList.toggle("dark");
 
-    <div class="hero-left">
+            const isDark =
+                body.classList.contains("dark");
 
-        <span class="eyebrow">
-            ✦ CREATIVE DESIGN STUDIO
-        </span>
+            localStorage.setItem(
+                "aiden-theme",
+                isDark
+                    ? "dark"
+                    : "light"
+            );
 
-        <h1>
-            Design that
-            <span>gets noticed.</span>
-        </h1>
+            updateThemeIcon();
 
-        <p class="hero-description">
-            We create bold visual identities, professional print
-            materials and memorable branding that helps businesses
-            stand out.
-        </p>
+        }
+    );
 
-        <div class="hero-buttons">
 
-            <a href="#work" class="primary-button">
-                Explore our work
-                <span>↗</span>
-            </a>
+    /* =====================================================
+       MOBILE MENU
+    ===================================================== */
 
-            <a href="#contact" class="secondary-button">
-                Start a project
-            </a>
+    function openMenu() {
 
-        </div>
+        mobileMenu?.classList.add("active");
 
-        <div class="hero-mini-stats">
+        menuButton?.setAttribute(
+            "aria-expanded",
+            "true"
+        );
 
-            <div>
-                <strong>01</strong>
-                <span>DESIGN</span>
-            </div>
+        body.style.overflow = "hidden";
+    }
 
-            <div>
-                <strong>02</strong>
-                <span>PRINT</span>
-            </div>
 
-            <div>
-                <strong>03</strong>
-                <span>BRAND</span>
-            </div>
+    function closeMobileMenu() {
 
-        </div>
+        mobileMenu?.classList.remove("active");
 
-    </div>
+        menuButton?.setAttribute(
+            "aria-expanded",
+            "false"
+        );
 
+        body.style.overflow = "";
+    }
 
-    <div class="hero-right">
 
-        <div class="hero-card">
+    menuButton?.addEventListener(
+        "click",
+        openMenu
+    );
 
-            <img
-                src="assets/project1.jpeg"
-                alt="Featured Aiden Pace Graphics project"
-                fetchpriority="high"
-            >
 
-            <div class="hero-card-overlay">
+    closeMenu?.addEventListener(
+        "click",
+        closeMobileMenu
+    );
 
-                <span>01 / FEATURED WORK</span>
 
-                <strong>
-                    Visual identity<br>
-                    & branding
-                </strong>
+    document
+        .querySelectorAll(".mobile-menu-content a")
+        .forEach(link => {
 
-                <a href="#work">
-                    View project
-                    <i class="fa-solid fa-arrow-up-right"></i>
-                </a>
+            link.addEventListener(
+                "click",
+                closeMobileMenu
+            );
 
-            </div>
+        });
 
-        </div>
 
-        <div class="hero-stamp">
-            <span>AP</span>
-            <small>GRAPHICS</small>
-        </div>
+    document.addEventListener(
+        "keydown",
+        event => {
 
-    </div>
+            if (event.key === "Escape") {
+                closeMobileMenu();
+            }
 
-</section>
+        }
+    );
 
 
-<!-- ================= MARQUEE ================= -->
+    /* =====================================================
+       HEADER SCROLL EFFECT
+    ===================================================== */
 
-<section class="marquee" aria-label="Services">
+    function updateHeader() {
 
-    <div class="marquee-track">
+        if (!header) {
+            return;
+        }
 
-        <span>DESIGN</span>
-        <b>✦</b>
+        if (window.scrollY > 25) {
 
-        <span>PRINT</span>
-        <b>✦</b>
+            header.classList.add("scrolled");
 
-        <span>BRAND</span>
-        <b>✦</b>
+        } else {
 
-        <span>CREATIVE</span>
-        <b>✦</b>
+            header.classList.remove("scrolled");
 
-        <span>DESIGN</span>
-        <b>✦</b>
+        }
 
-        <span>PRINT</span>
-        <b>✦</b>
+    }
 
-        <span>BRAND</span>
-        <b>✦</b>
 
-        <span>CREATIVE</span>
-        <b>✦</b>
+    window.addEventListener(
+        "scroll",
+        updateHeader,
+        { passive: true }
+    );
 
-    </div>
+    updateHeader();
 
-</section>
 
+    /* =====================================================
+       PORTFOLIO FILTER
+    ===================================================== */
 
-<!-- ================= ABOUT ================= -->
+    const filters =
+        document.querySelectorAll(".filter");
 
-<section class="about section" id="about">
+    const projects =
+        document.querySelectorAll(".project");
 
-    <div class="section-number">
-        01
-    </div>
 
-    <div class="section-heading">
+    filters.forEach(filter => {
 
-        <span>ABOUT THE STUDIO</span>
+        filter.addEventListener(
+            "click",
+            () => {
 
-        <h2>
-            We turn ideas into
-            <em>visual experiences.</em>
-        </h2>
+                const selected =
+                    filter.dataset.filter;
 
-    </div>
+                filters.forEach(item => {
 
+                    item.classList.remove(
+                        "active"
+                    );
 
-    <div class="about-content">
+                });
 
-        <div class="about-text">
+                filter.classList.add("active");
 
-            <p class="large-text">
-                Aiden Pace Graphics is a creative design and
-                printing company focused on making brands look
-                professional, memorable and ready for the real world.
-            </p>
 
-            <p>
-                From business branding and promotional materials
-                to high-quality printing, we help individuals,
-                businesses and organisations communicate visually.
-            </p>
+                projects.forEach(project => {
 
-            <a href="#contact" class="text-link">
-                Work with us ↗
-            </a>
+                    const category =
+                        project.dataset.category;
 
-        </div>
+                    if (
+                        selected === "all" ||
+                        category === selected
+                    ) {
 
+                        project.classList.remove(
+                            "is-hidden"
+                        );
 
-        <div class="about-stats">
+                    } else {
 
-            <div>
-                <strong>01</strong>
-                <span>DESIGN</span>
-                <p>Creative visual design</p>
-            </div>
+                        project.classList.add(
+                            "is-hidden"
+                        );
 
-            <div>
-                <strong>02</strong>
-                <span>PRINT</span>
-                <p>Professional print work</p>
-            </div>
+                    }
 
-            <div>
-                <strong>03</strong>
-                <span>BRAND</span>
-                <p>Business identity</p>
-            </div>
+                });
 
-        </div>
+            }
+        );
 
-    </div>
+    });
 
-</section>
 
+    /* =====================================================
+       SCROLL REVEAL
+    ===================================================== */
 
-<!-- ================= SERVICES ================= -->
+    const revealElements =
+        document.querySelectorAll(
+            ".about-text, " +
+            ".about-stats, " +
+            ".service-card, " +
+            ".project, " +
+            ".product-card, " +
+            ".why-item, " +
+            ".process-step, " +
+            ".contact-item"
+        );
 
-<section class="services section" id="services">
 
-    <div class="section-number">
-        02
-    </div>
+    revealElements.forEach(element => {
 
-    <div class="section-heading">
+        element.classList.add("reveal");
 
-        <span>WHAT WE DO</span>
+    });
 
-        <h2>
-            Built around
-            <em>your brand.</em>
-        </h2>
 
-    </div>
+    const revealObserver =
+        new IntersectionObserver(
+            entries => {
 
+                entries.forEach(entry => {
 
-    <div class="service-grid">
+                    if (!entry.isIntersecting) {
+                        return;
+                    }
 
-        <article class="service-card">
+                    entry.target.classList.add(
+                        "revealed"
+                    );
 
-            <div class="service-top">
-                <span>01</span>
-                <i class="fa-solid fa-pen-nib"></i>
-            </div>
+                    revealObserver.unobserve(
+                        entry.target
+                    );
 
-            <div>
-                <h3>Graphic Design</h3>
+                });
 
-                <p>
-                    Posters, flyers, social media graphics,
-                    promotional artwork and custom designs.
-                </p>
-            </div>
+            },
+            {
+                threshold: 0.12,
+                rootMargin: "0px 0px -50px 0px"
+            }
+        );
 
-            <a href="#contact">
-                Request design
-                <i class="fa-solid fa-arrow-up-right"></i>
-            </a>
 
-        </article>
+    revealElements.forEach(element => {
 
+        revealObserver.observe(element);
 
-        <article class="service-card featured-service">
+    });
 
-            <div class="service-top">
-                <span>02</span>
-                <i class="fa-solid fa-shapes"></i>
-            </div>
 
-            <div>
-                <h3>Branding</h3>
+    /* =====================================================
+       STAGGER CARD ANIMATIONS
+    ===================================================== */
 
-                <p>
-                    Logos, business identities and visual systems
-                    that make businesses recognizable.
-                </p>
-            </div>
+    const cardGroups = [
+        ".service-card",
+        ".product-card",
+        ".process-step"
+    ];
 
-            <a href="#contact">
-                Build my brand
-                <i class="fa-solid fa-arrow-up-right"></i>
-            </a>
 
-        </article>
+    cardGroups.forEach(selector => {
 
+        document
+            .querySelectorAll(selector)
+            .forEach((card, index) => {
 
-        <article class="service-card">
+                card.style.transitionDelay =
+                    `${index * 70}ms`;
 
-            <div class="service-top">
-                <span>03</span>
-                <i class="fa-solid fa-print"></i>
-            </div>
+            });
 
-            <div>
-                <h3>Printing</h3>
+    });
 
-                <p>
-                    Professional printing for business,
-                    promotional and branded materials.
-                </p>
-            </div>
 
-            <a href="#products">
-                View print products
-                <i class="fa-solid fa-arrow-up-right"></i>
-            </a>
+    /* =====================================================
+       CURRENT YEAR
+    ===================================================== */
 
-        </article>
+    const yearElements =
+        document.querySelectorAll(
+            "[data-current-year]"
+        );
 
-    </div>
 
-</section>
+    yearElements.forEach(element => {
 
+        element.textContent =
+            new Date().getFullYear();
 
-<!-- ================= FEATURED WORK ================= -->
+    });
 
-<section class="work section" id="work">
 
-    <div class="section-number">
-        03
-    </div>
+    /* =====================================================
+       IMAGE ERROR HANDLING
+    ===================================================== */
 
-    <div class="work-header">
+    document
+        .querySelectorAll("img")
+        .forEach(image => {
 
-        <div>
+            image.addEventListener(
+                "error",
+                () => {
 
-            <span>SELECTED WORK</span>
+                    image.style.opacity = "0.35";
 
-            <h2>
-                Our <em>portfolio.</em>
-            </h2>
+                    image.parentElement?.classList.add(
+                        "image-missing"
+                    );
 
-        </div>
+                }
+            );
 
-        <p>
-            A selection of designs, branding and print projects
-            created by Aiden Pace Graphics.
-        </p>
+        });
 
-    </div>
 
+    /* =====================================================
+       ACTIVE NAVIGATION
+    ===================================================== */
 
-    <!-- FILTERS -->
+    const sections =
+        document.querySelectorAll(
+            "main section[id]"
+        );
 
-    <div class="filters">
+    const navLinks =
+        document.querySelectorAll(
+            ".desktop-nav a"
+        );
 
-        <button
-            class="filter active"
-            data-filter="all"
-        >
-            All
-        </button>
 
-        <button
-            class="filter"
-            data-filter="branding"
-        >
-            Branding
-        </button>
+    const sectionObserver =
+        new IntersectionObserver(
+            entries => {
 
-        <button
-            class="filter"
-            data-filter="print"
-        >
-            Print
-        </button>
+                entries.forEach(entry => {
 
-        <button
-            class="filter"
-            data-filter="design"
-        >
-            Design
-        </button>
+                    if (!entry.isIntersecting) {
+                        return;
+                    }
 
-    </div>
+                    const id =
+                        entry.target.getAttribute("id");
 
+                    navLinks.forEach(link => {
 
-    <!-- PROJECT GRID -->
+                        link.classList.remove(
+                            "current"
+                        );
 
-    <div class="projects">
+                        if (
+                            link.getAttribute("href") ===
+                            `#${id}`
+                        ) {
 
-        <article
-            class="project project-large"
-            data-category="branding"
-        >
+                            link.classList.add(
+                                "current"
+                            );
 
-            <div class="project-image">
+                        }
 
-                <img
-                    src="assets/project1.jpeg"
-                    alt="Business branding project"
-                    loading="lazy"
-                >
+                    });
 
-                <span class="project-number">01</span>
+                });
 
-                <div class="image-overlay">
-                    <span>VIEW PROJECT</span>
-                    <i class="fa-solid fa-arrow-up-right"></i>
-                </div>
+            },
+            {
+                rootMargin:
+                    "-30% 0px -60% 0px"
+            }
+        );
 
-            </div>
 
-            <div class="project-info">
+    sections.forEach(section => {
 
-                <span>BRANDING</span>
+        sectionObserver.observe(section);
 
-                <h3>Business Identity</h3>
+    });
 
-                <p>
-                    Creating a strong visual identity for modern
-                    businesses.
-                </p>
 
-            </div>
+    /* =====================================================
+       CLOSE MOBILE MENU WHEN RESIZING
+    ===================================================== */
 
-        </article>
+    window.addEventListener(
+        "resize",
+        () => {
 
+            if (
+                window.innerWidth > 800
+            ) {
 
-        <article
-            class="project"
-            data-category="print"
-        >
+                closeMobileMenu();
 
-            <div class="project-image">
+            }
 
-                <img
-                    src="assets/project2.jpeg"
-                    alt="Promotional print project"
-                    loading="lazy"
-                >
+        }
+    );
 
-                <span class="project-number">02</span>
-
-                <div class="image-overlay">
-                    <span>VIEW PROJECT</span>
-                    <i class="fa-solid fa-arrow-up-right"></i>
-                </div>
-
-            </div>
-
-            <div class="project-info">
-
-                <span>PRINT</span>
-
-                <h3>Promotional Print</h3>
-
-                <p>
-                    Professional printed materials designed to
-                    make an impact.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <article
-            class="project"
-            data-category="design"
-        >
-
-            <div class="project-image">
-
-                <img
-                    src="assets/project3.jpeg"
-                    alt="Creative graphic design project"
-                    loading="lazy"
-                >
-
-                <span class="project-number">03</span>
-
-                <div class="image-overlay">
-                    <span>VIEW PROJECT</span>
-                    <i class="fa-solid fa-arrow-up-right"></i>
-                </div>
-
-            </div>
-
-            <div class="project-info">
-
-                <span>DESIGN</span>
-
-                <h3>Creative Graphics</h3>
-
-                <p>
-                    Eye-catching graphics for personal and
-                    commercial use.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <article
-            class="project project-large"
-            data-category="branding"
-        >
-
-            <div class="project-image">
-
-                <img
-                    src="assets/project4.jpeg"
-                    alt="Complete brand package"
-                    loading="lazy"
-                >
-
-                <span class="project-number">04</span>
-
-                <div class="image-overlay">
-                    <span>VIEW PROJECT</span>
-                    <i class="fa-solid fa-arrow-up-right"></i>
-                </div>
-
-            </div>
-
-            <div class="project-info">
-
-                <span>BRANDING</span>
-
-                <h3>Complete Brand Package</h3>
-
-                <p>
-                    A complete visual direction designed to
-                    bring a brand together.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <article
-            class="project"
-            data-category="print"
-        >
-
-            <div class="project-image">
-
-                <img
-                    src="assets/project5.jpeg"
-                    alt="Custom printing project"
-                    loading="lazy"
-                >
-
-                <span class="project-number">05</span>
-
-                <div class="image-overlay">
-                    <span>VIEW PROJECT</span>
-                    <i class="fa-solid fa-arrow-up-right"></i>
-                </div>
-
-            </div>
-
-            <div class="project-info">
-
-                <span>PRINT</span>
-
-                <h3>Custom Printing</h3>
-
-                <p>
-                    High-quality printed products for brands
-                    and businesses.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- ADD MORE PORTFOLIO IMAGES -->
-
-        <article class="project" data-category="design">
-
-            <div class="project-image">
-
-                <img
-                    src="assets/project6.jpeg"
-                    alt="Graphic design project"
-                    loading="lazy"
-                >
-
-                <span class="project-number">06</span>
-
-                <div class="image-overlay">
-                    <span>VIEW PROJECT</span>
-                    <i class="fa-solid fa-arrow-up-right"></i>
-                </div>
-
-            </div>
-
-            <div class="project-info">
-                <span>DESIGN</span>
-                <h3>Creative Campaign</h3>
-                <p>Visual artwork created for promotion and communication.</p>
-            </div>
-
-        </article>
-
-
-        <article class="project" data-category="branding">
-
-            <div class="project-image">
-
-                <img
-                    src="assets/project7.jpeg"
-                    alt="Branding project"
-                    loading="lazy"
-                >
-
-                <span class="project-number">07</span>
-
-                <div class="image-overlay">
-                    <span>VIEW PROJECT</span>
-                    <i class="fa-solid fa-arrow-up-right"></i>
-                </div>
-
-            </div>
-
-            <div class="project-info">
-                <span>BRANDING</span>
-                <h3>Brand Direction</h3>
-                <p>Visual direction created to give a business a stronger presence.</p>
-            </div>
-
-        </article>
-
-
-        <article class="project" data-category="print">
-
-            <div class="project-image">
-
-                <img
-                    src="assets/project8.jpeg"
-                    alt="Print design project"
-                    loading="lazy"
-                >
-
-                <span class="project-number">08</span>
-
-                <div class="image-overlay">
-                    <span>VIEW PROJECT</span>
-                    <i class="fa-solid fa-arrow-up-right"></i>
-                </div>
-
-            </div>
-
-            <div class="project-info">
-                <span>PRINT</span>
-                <h3>Business Materials</h3>
-                <p>Branded print materials designed for everyday business use.</p>
-            </div>
-
-        </article>
-
-
-        <article class="project" data-category="design">
-
-            <div class="project-image">
-
-                <img
-                    src="assets/project9.jpeg"
-                    alt="Digital design project"
-                    loading="lazy"
-                >
-
-                <span class="project-number">09</span>
-
-                <div class="image-overlay">
-                    <span>VIEW PROJECT</span>
-                    <i class="fa-solid fa-arrow-up-right"></i>
-                </div>
-
-            </div>
-
-            <div class="project-info">
-                <span>DESIGN</span>
-                <h3>Digital Artwork</h3>
-                <p>Modern digital graphics designed for attention.</p>
-            </div>
-
-        </article>
-
-
-        <article class="project project-large" data-category="branding">
-
-            <div class="project-image">
-
-                <img
-                    src="assets/project10.jpeg"
-                    alt="Brand identity project"
-                    loading="lazy"
-                >
-
-                <span class="project-number">10</span>
-
-                <div class="image-overlay">
-                    <span>VIEW PROJECT</span>
-                    <i class="fa-solid fa-arrow-up-right"></i>
-                </div>
-
-            </div>
-
-            <div class="project-info">
-                <span>BRANDING</span>
-                <h3>Visual Brand System</h3>
-                <p>A cohesive visual system designed for consistent brand communication.</p>
-            </div>
-
-        </article>
-
-
-        <article class="project" data-category="print">
-
-            <div class="project-image">
-
-                <img
-                    src="assets/project11.jpeg"
-                    alt="Printed branding project"
-                    loading="lazy"
-                >
-
-                <span class="project-number">11</span>
-
-                <div class="image-overlay">
-                    <span>VIEW PROJECT</span>
-                    <i class="fa-solid fa-arrow-up-right"></i>
-                </div>
-
-            </div>
-
-            <div class="project-info">
-                <span>PRINT</span>
-                <h3>Branded Print</h3>
-                <p>Professional print solutions for businesses and events.</p>
-            </div>
-
-        </article>
-
-
-        <article class="project" data-category="design">
-
-            <div class="project-image">
-
-                <img
-                    src="assets/project12.jpeg"
-                    alt="Creative design project"
-                    loading="lazy"
-                >
-
-                <span class="project-number">12</span>
-
-                <div class="image-overlay">
-                    <span>VIEW PROJECT</span>
-                    <i class="fa-solid fa-arrow-up-right"></i>
-                </div>
-
-            </div>
-
-            <div class="project-info">
-                <span>DESIGN</span>
-                <h3>Creative Direction</h3>
-                <p>Bold visuals created to give ideas a stronger identity.</p>
-            </div>
-
-        </article>
-
-    </div>
-
-</section>
-
-
-<!-- ================= PRODUCTS ================= -->
-
-<section class="products section" id="products">
-
-    <div class="section-number">
-        04
-    </div>
-
-    <div class="work-header">
-
-        <div>
-
-            <span>WHAT YOU CAN ORDER</span>
-
-            <h2>
-                Products & <em>services.</em>
-            </h2>
-
-        </div>
-
-        <p>
-            Choose what you need, then contact us for pricing,
-            specifications and your custom order.
-        </p>
-
-    </div>
-
-
-    <div class="product-grid">
-
-        <article class="product-card">
-
-            <div class="product-image">
-                <img
-                    src="assets/product1.jpeg"
-                    alt="Business cards"
-                    loading="lazy"
-                >
-            </div>
-
-            <div class="product-content">
-                <span>01 / PRINT</span>
-                <h3>Business Cards</h3>
-                <p>Professional cards for your business and personal brand.</p>
-
-                <a
-                    href="https://wa.me/254740752833?text=Hi%20Aiden%20Pace%20Graphics,%20I%20would%20like%20to%20order%20business%20cards."
-                    target="_blank"
-                    rel="noopener"
-                >
-                    Enquire on WhatsApp
-                    <i class="fa-brands fa-whatsapp"></i>
-                </a>
-            </div>
-
-        </article>
-
-
-        <article class="product-card">
-
-            <div class="product-image">
-                <img
-                    src="assets/product2.jpeg"
-                    alt="Flyers and posters"
-                    loading="lazy"
-                >
-            </div>
-
-            <div class="product-content">
-                <span>02 / PRINT</span>
-                <h3>Flyers & Posters</h3>
-                <p>Promotional artwork designed to get your message noticed.</p>
-
-                <a
-                    href="https://wa.me/254740752833?text=Hi%20Aiden%20Pace%20Graphics,%20I%20need%20flyers%20or%20posters."
-                    target="_blank"
-                    rel="noopener"
-                >
-                    Enquire on WhatsApp
-                    <i class="fa-brands fa-whatsapp"></i>
-                </a>
-            </div>
-
-        </article>
-
-
-        <article class="product-card">
-
-            <div class="product-image">
-                <img
-                    src="assets/product3.jpeg"
-                    alt="T-shirt printing"
-                    loading="lazy"
-                >
-            </div>
-
-            <div class="product-content">
-                <span>03 / BRANDING</span>
-                <h3>Branded T-Shirts</h3>
-                <p>Custom apparel for businesses, events and personal brands.</p>
-
-                <a
-                    href="https://wa.me/254740752833?text=Hi%20Aiden%20Pace%20Graphics,%20I%20am%20interested%20in%20branded%20T-shirts."
-                    target="_blank"
-                    rel="noopener"
-                >
-                    Enquire on WhatsApp
-                    <i class="fa-brands fa-whatsapp"></i>
-                </a>
-            </div>
-
-        </article>
-
-
-        <article class="product-card">
-
-            <div class="product-image">
-                <img
-                    src="assets/product4.jpeg"
-                    alt="Logo design"
-                    loading="lazy"
-                >
-            </div>
-
-            <div class="product-content">
-                <span>04 / DESIGN</span>
-                <h3>Logo Design</h3>
-                <p>A distinctive logo designed around your business identity.</p>
-
-                <a
-                    href="https://wa.me/254740752833?text=Hi%20Aiden%20Pace%20Graphics,%20I%20need%20a%20logo%20design."
-                    target="_blank"
-                    rel="noopener"
-                >
-                    Enquire on WhatsApp
-                    <i class="fa-brands fa-whatsapp"></i>
-                </a>
-            </div>
-
-        </article>
-
-
-        <article class="product-card">
-
-            <div class="product-image">
-                <img
-                    src="assets/product5.jpeg"
-                    alt="Social media graphics"
-                    loading="lazy"
-                >
-            </div>
-
-            <div class="product-content">
-                <span>05 / DESIGN</span>
-                <h3>Social Media Design</h3>
-                <p>Consistent graphics that make your social presence look professional.</p>
-
-                <a
-                    href="https://wa.me/254740752833?text=Hi%20Aiden%20Pace%20Graphics,%20I%20need%20social%20media%20graphics."
-                    target="_blank"
-                    rel="noopener"
-                >
-                    Enquire on WhatsApp
-                    <i class="fa-brands fa-whatsapp"></i>
-                </a>
-            </div>
-
-        </article>
-
-
-        <article class="product-card">
-
-            <div class="product-image">
-                <img
-                    src="assets/product6.jpeg"
-                    alt="Branding package"
-                    loading="lazy"
-                >
-            </div>
-
-            <div class="product-content">
-                <span>06 / BRANDING</span>
-                <h3>Full Branding</h3>
-                <p>Bring your logo, colours and visual identity together.</p>
-
-                <a
-                    href="https://wa.me/254740752833?text=Hi%20Aiden%20Pace%20Graphics,%20I%20am%20interested%20in%20a%20full%20branding%20package."
-                    target="_blank"
-                    rel="noopener"
-                >
-                    Enquire on WhatsApp
-                    <i class="fa-brands fa-whatsapp"></i>
-                </a>
-            </div>
-
-        </article>
-
-
-        <article class="product-card">
-
-            <div class="product-image">
-                <img
-                    src="assets/product7.jpeg"
-                    alt="Custom print products"
-                    loading="lazy"
-                >
-            </div>
-
-            <div class="product-content">
-                <span>07 / PRINT</span>
-                <h3>Custom Printing</h3>
-                <p>Have something specific in mind? We can discuss your requirements.</p>
-
-                <a
-                    href="https://wa.me/254740752833?text=Hi%20Aiden%20Pace%20Graphics,%20I%20have%20a%20custom%20printing%20request."
-                    target="_blank"
-                    rel="noopener"
-                >
-                    Enquire on WhatsApp
-                    <i class="fa-brands fa-whatsapp"></i>
-                </a>
-            </div>
-
-        </article>
-
-
-        <article class="product-card">
-
-            <div class="product-image">
-                <img
-                    src="assets/product8.jpeg"
-                    alt="Custom graphic design"
-                    loading="lazy"
-                >
-            </div>
-
-            <div class="product-content">
-                <span>08 / DESIGN</span>
-                <h3>Custom Design</h3>
-                <p>Have an idea? Tell us what you need and we'll take it from there.</p>
-
-                <a
-                    href="https://wa.me/254740752833?text=Hi%20Aiden%20Pace%20Graphics,%20I%20have%20a%20custom%20design%20request."
-                    target="_blank"
-                    rel="noopener"
-                >
-                    Enquire on WhatsApp
-                    <i class="fa-brands fa-whatsapp"></i>
-                </a>
-            </div>
-
-        </article>
-
-    </div>
-
-</section>
-
-
-<!-- ================= WHY US ================= -->
-
-<section class="why section">
-
-    <div class="section-number">
-        05
-    </div>
-
-    <div class="why-grid">
-
-        <div class="why-heading">
-
-            <span>WHY AIDEN PACE?</span>
-
-            <h2>
-                Your idea deserves
-                <em>good design.</em>
-            </h2>
-
-        </div>
-
-
-        <div class="why-list">
-
-            <div class="why-item">
-
-                <span>01</span>
-
-                <div>
-                    <h3>Purposeful Design</h3>
-                    <p>
-                        Every visual decision should have a reason
-                        and communicate something.
-                    </p>
-                </div>
-
-            </div>
-
-
-            <div class="why-item">
-
-                <span>02</span>
-
-                <div>
-                    <h3>Consistent Branding</h3>
-                    <p>
-                        We help turn separate designs into one
-                        recognizable visual identity.
-                    </p>
-                </div>
-
-            </div>
-
-
-            <div class="why-item">
-
-                <span>03</span>
-
-                <div>
-                    <h3>Design + Print</h3>
-                    <p>
-                        Get the creative work and physical
-                        production working together.
-                    </p>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= PROCESS ================= -->
-
-<section class="process section">
-
-    <div class="section-number">
-        06
-    </div>
-
-    <div class="section-heading">
-
-        <span>OUR PROCESS</span>
-
-        <h2>
-            From idea to
-            <em>finished work.</em>
-        </h2>
-
-    </div>
-
-
-    <div class="process-grid">
-
-        <div class="process-step">
-            <span>01</span>
-            <i class="fa-regular fa-comments"></i>
-            <h3>Brief</h3>
-            <p>Tell us what you need and what you're trying to achieve.</p>
-        </div>
-
-        <div class="process-step">
-            <span>02</span>
-            <i class="fa-solid fa-pen-ruler"></i>
-            <h3>Design</h3>
-            <p>We develop the visual direction around your idea.</p>
-        </div>
-
-        <div class="process-step">
-            <span>03</span>
-            <i class="fa-solid fa-print"></i>
-            <h3>Produce</h3>
-            <p>Approved artwork can move into professional production.</p>
-        </div>
-
-        <div class="process-step">
-            <span>04</span>
-            <i class="fa-solid fa-check"></i>
-            <h3>Deliver</h3>
-            <p>You receive the finished creative or printed work.</p>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= CTA ================= -->
-
-<section class="cta section">
-
-    <div class="cta-inner">
-
-        <span>READY TO CREATE?</span>
-
-        <h2>
-            Let's make your
-            <em>brand impossible to ignore.</em>
-        </h2>
-
-        <a href="#contact" class="primary-button">
-            Start a project
-            <span>↗</span>
-        </a>
-
-    </div>
-
-</section>
-
-
-<!-- ================= CONTACT ================= -->
-
-<section class="contact section" id="contact">
-
-    <div class="section-number">
-        07
-    </div>
-
-    <div class="contact-grid">
-
-        <div>
-
-            <span>LET'S WORK TOGETHER</span>
-
-            <h2>
-                Have a project
-                <em>in mind?</em>
-            </h2>
-
-            <p>
-                Tell us what you need and let's turn the idea
-                into something people remember.
-            </p>
-
-            <a
-                href="https://wa.me/254740752833?text=Hi%20Aiden%20Pace%20Graphics,%20I%20would%20like%20to%20start%20a%20project."
-                class="contact-main-button"
-                target="_blank"
-                rel="noopener"
-            >
-                Start on WhatsApp
-                <i class="fa-brands fa-whatsapp"></i>
-            </a>
-
-        </div>
-
-
-        <div class="contact-details">
-
-            <a
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=aidenpacegraphics@gmail.com"
-                class="contact-item"
-                target="_blank"
-                rel="noopener"
-            >
-                <span>EMAIL</span>
-
-                <strong>
-                    aidenpacegraphics@gmail.com
-                </strong>
-
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
-
-
-            <a
-                href="https://wa.me/254740752833"
-                class="contact-item"
-                target="_blank"
-                rel="noopener"
-            >
-                <span>WHATSAPP</span>
-
-                <strong>
-                    0740 752 833
-                </strong>
-
-                <i class="fa-brands fa-whatsapp"></i>
-            </a>
-
-
-            <a
-                href="https://wa.me/254740880180"
-                class="contact-item"
-                target="_blank"
-                rel="noopener"
-            >
-                <span>WHATSAPP</span>
-
-                <strong>
-                    0740 880 180
-                </strong>
-
-                <i class="fa-brands fa-whatsapp"></i>
-            </a>
-
-
-            <a
-                href="https://maps.app.goo.gl/gQ9ZPjvceDHvK4ih8"
-                class="contact-item"
-                target="_blank"
-                rel="noopener"
-            >
-                <span>LOCATION</span>
-
-                <strong>
-                    Visit Aiden Pace Graphics
-                </strong>
-
-                <i class="fa-solid fa-location-dot"></i>
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-</main>
-
-
-<!-- ================= FLOATING SOCIALS ================= -->
-
-<div class="floating-socials">
-
-    <a
-        href="https://wa.me/254740752833"
-        target="_blank"
-        rel="noopener"
-        aria-label="WhatsApp"
-        class="whatsapp"
-    >
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
-
-
-    <a
-        href="https://www.instagram.com/aidenpacegraphics"
-        target="_blank"
-        rel="noopener"
-        aria-label="Instagram"
-    >
-        <i class="fa-brands fa-instagram"></i>
-    </a>
-
-
-    <a
-        href="https://vm.tiktok.com/ZS9kvvV59qtnf-1lkNV/"
-        target="_blank"
-        rel="noopener"
-        aria-label="TikTok"
-    >
-        <i class="fa-brands fa-tiktok"></i>
-    </a>
-
-
-    <a
-        href="https://mail.google.com/mail/?view=cm&fs=1&to=aidenpacegraphics@gmail.com"
-        target="_blank"
-        rel="noopener"
-        aria-label="Email"
-        class="email-btn"
-    >
-        <i class="fa-solid fa-envelope"></i>
-    </a>
-
-</div>
-
-
-<!-- ================= FOOTER ================= -->
-
-<footer>
-
-    <div class="footer-top">
-
-        <img
-            src="logo.jpeg"
-            alt="Aiden Pace Graphics"
-        >
-
-        <p>
-            Design • Print • Brand
-        </p>
-
-    </div>
-
-
-    <div class="footer-bottom">
-
-        <span>
-            © 2026 Aiden Pace Graphics
-        </span>
-
-        <span>
-            Creativity at its Peak.
-        </span>
-
-    </div>
-
-</footer>
-
-
-<script src="script.js"></script>
-
-</body>
-</html>
+});
