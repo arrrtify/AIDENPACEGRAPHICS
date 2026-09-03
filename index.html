@@ -1,25 +1,963 @@
+```html
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<meta
-    name="description"
-    content="Aiden Pace Graphics — Design, Print and Brand."
->
+    <meta
+        name="description"
+        content="Aiden Pace Graphics — Graphic Design, Printing and Branding."
+    >
 
-<title>Aiden Pace Graphics | Design • Print • Brand</title>
+    <meta
+        name="theme-color"
+        content="#414394"
+    >
 
-<!-- Google Font -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Aiden Pace Graphics | Design • Print • Brand</title>
 
-<link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="site-header" id="siteHeader">
+        <div class="container nav-container">
+
+            <a href="#home" class="logo">
+                <img src="assets/logo.jpeg" alt="Aiden Pace Graphics logo">
+                <span>
+                    <strong>AIDEN PACE</strong>
+                    <small>GRAPHICS</small>
+                </span>
+            </a>
+
+            <nav class="desktop-nav">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#work" class="nav-link">Work</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+
+                <button
+                    class="theme-toggle"
+                    id="themeToggle"
+                    aria-label="Switch to dark mode"
+                    title="Toggle theme"
+                >
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+
+                <a href="#contact" class="nav-cta">
+                    Get in touch
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+
+                <button
+                    class="menu-toggle"
+                    id="menuToggle"
+                    aria-label="Open menu"
+                    aria-expanded="false"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Mobile navigation -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#work">Work</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+
+            <a href="#contact" class="mobile-menu-cta">
+                Start a project
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- =========================
+             HERO
+        ========================== -->
+
+        <section class="hero" id="home">
+
+            <div class="hero-glow glow-one"></div>
+            <div class="hero-glow glow-two"></div>
+
+            <div class="container hero-grid">
+
+                <div class="hero-content reveal">
+
+                    <div class="eyebrow">
+                        <span class="eyebrow-dot"></span>
+                        CREATIVE DESIGN STUDIO
+                    </div>
+
+                    <h1>
+                        Design that
+                        <span>gets noticed.</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        We create bold visual identities, quality print
+                        materials and memorable brands built to stand out.
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <a href="#work" class="btn btn-primary">
+                            Explore our work
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </a>
+
+                        <a href="#contact" class="btn btn-outline">
+                            Start a project
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+
+                    </div>
+
+                    <div class="hero-meta">
+
+                        <div class="hero-meta-item">
+                            <strong>03</strong>
+                            <span>Core services</span>
+                        </div>
+
+                        <div class="hero-divider"></div>
+
+                        <div class="hero-meta-item">
+                            <strong>07</strong>
+                            <span>Featured projects</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hero-visual reveal">
+
+                    <div class="hero-card">
+
+                        <img
+                            src="assets/project1.jpeg"
+                            alt="Aiden Pace Graphics featured design"
+                        >
+
+                        <div class="hero-card-overlay"></div>
+
+                        <div class="hero-card-top">
+                            <span>01 / 07</span>
+                            <span>FEATURED WORK</span>
+                        </div>
+
+                        <div class="hero-card-bottom">
+
+                            <div>
+                                <span>Visual identity</span>
+                                <strong>Branding & Design</strong>
+                            </div>
+
+                            <div class="hero-stamp">
+                                AP
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="floating-tag tag-one">
+                        <i class="fa-solid fa-star"></i>
+                        Creative
+                    </div>
+
+                    <div class="floating-tag tag-two">
+                        <i class="fa-solid fa-bolt"></i>
+                        Bold ideas
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="hero-scroll">
+                <span>SCROLL TO EXPLORE</span>
+                <i class="fa-solid fa-arrow-down"></i>
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             MARQUEE
+        ========================== -->
+
+        <div class="marquee">
+            <div class="marquee-track">
+
+                <span>DESIGN</span>
+                <b>✦</b>
+                <span>PRINT</span>
+                <b>✦</b>
+                <span>BRAND</span>
+                <b>✦</b>
+                <span>CREATIVE</span>
+                <b>✦</b>
+
+                <span>DESIGN</span>
+                <b>✦</b>
+                <span>PRINT</span>
+                <b>✦</b>
+                <span>BRAND</span>
+                <b>✦</b>
+                <span>CREATIVE</span>
+                <b>✦</b>
+
+            </div>
+        </div>
+
+
+        <!-- =========================
+             ABOUT
+        ========================== -->
+
+        <section class="about section" id="about">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+
+                    <div>
+                        <span class="eyebrow">
+                            ✦ ABOUT AIDEN PACE
+                        </span>
+
+                        <h2>
+                            We turn ideas into
+                            <span>visual experiences.</span>
+                        </h2>
+                    </div>
+
+                    <p>
+                        Aiden Pace Graphics is a creative design and
+                        printing studio focused on making businesses
+                        look professional, memorable and impossible
+                        to overlook.
+                    </p>
+
+                </div>
+
+
+                <div class="about-grid">
+
+                    <div class="about-statement reveal">
+
+                        <span class="big-number">01</span>
+
+                        <p>
+                            From a simple idea to a complete visual
+                            identity, we bring creativity and purpose
+                            together to create work that connects.
+                        </p>
+
+                        <a href="#contact" class="text-link">
+                            Work with us
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+                    </div>
+
+
+                    <div class="stats-grid reveal">
+
+                        <div class="stat">
+                            <strong>01</strong>
+                            <span>Design</span>
+                        </div>
+
+                        <div class="stat">
+                            <strong>02</strong>
+                            <span>Print</span>
+                        </div>
+
+                        <div class="stat">
+                            <strong>03</strong>
+                            <span>Brand</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SERVICES
+        ========================== -->
+
+        <section class="services section" id="services">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+
+                    <div>
+                        <span class="eyebrow">
+                            ✦ WHAT WE DO
+                        </span>
+
+                        <h2>
+                            Built around
+                            <span>your vision.</span>
+                        </h2>
+                    </div>
+
+                    <p>
+                        Three focused creative services designed to
+                        take your brand from idea to something people
+                        remember.
+                    </p>
+
+                </div>
+
+
+                <div class="services-grid">
+
+                    <article class="service-card reveal">
+
+                        <div class="service-top">
+                            <span>01</span>
+                            <i class="fa-solid fa-pen-nib"></i>
+                        </div>
+
+                        <h3>Graphic Design</h3>
+
+                        <p>
+                            Creative visual designs for posters,
+                            flyers, marketing materials and
+                            business communication.
+                        </p>
+
+                        <div class="service-bottom">
+                            <span>CREATIVE</span>
+                            <i class="fa-solid fa-arrow-up-right"></i>
+                        </div>
+
+                    </article>
+
+
+                    <article class="service-card featured-service reveal">
+
+                        <div class="service-top">
+                            <span>02</span>
+                            <i class="fa-solid fa-print"></i>
+                        </div>
+
+                        <h3>Printing</h3>
+
+                        <p>
+                            Quality printing for posters, stickers,
+                            promotional materials, business
+                            materials and more.
+                        </p>
+
+                        <div class="service-bottom">
+                            <span>PRODUCTION</span>
+                            <i class="fa-solid fa-arrow-up-right"></i>
+                        </div>
+
+                    </article>
+
+
+                    <article class="service-card reveal">
+
+                        <div class="service-top">
+                            <span>03</span>
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+
+                        <h3>Branding</h3>
+
+                        <p>
+                            Strong visual identities that give
+                            businesses a recognizable and
+                            professional presence.
+                        </p>
+
+                        <div class="service-bottom">
+                            <span>IDENTITY</span>
+                            <i class="fa-solid fa-arrow-up-right"></i>
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PORTFOLIO
+        ========================== -->
+
+        <section class="work section" id="work">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+
+                    <div>
+                        <span class="eyebrow">
+                            ✦ SELECTED WORK
+                        </span>
+
+                        <h2>
+                            Work that speaks
+                            <span>for itself.</span>
+                        </h2>
+                    </div>
+
+                    <p>
+                        A selection of our graphic design,
+                        branding and printing work.
+                    </p>
+
+                </div>
+
+
+                <!-- Filter buttons -->
+
+                <div class="portfolio-filters reveal">
+
+                    <button
+                        class="filter-btn active"
+                        data-filter="all"
+                    >
+                        All
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        data-filter="branding"
+                    >
+                        Branding
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        data-filter="print"
+                    >
+                        Print
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        data-filter="design"
+                    >
+                        Design
+                    </button>
+
+                </div>
+
+
+                <!-- Exactly 7 portfolio spaces -->
+
+                <div class="projects">
+
+                    <article
+                        class="project reveal"
+                        data-category="branding"
+                    >
+                        <div class="project-image">
+                            <img
+                                src="assets/project1.jpeg"
+                                alt="Brand identity project"
+                            >
+                            <span class="project-number">01</span>
+                        </div>
+
+                        <div class="project-info">
+                            <div>
+                                <h3>Brand Identity</h3>
+                                <p>Branding</p>
+                            </div>
+
+                            <span class="project-arrow">↗</span>
+                        </div>
+                    </article>
+
+
+                    <article
+                        class="project reveal"
+                        data-category="print"
+                    >
+                        <div class="project-image">
+                            <img
+                                src="assets/project2.jpeg"
+                                alt="Print design project"
+                            >
+                            <span class="project-number">02</span>
+                        </div>
+
+                        <div class="project-info">
+                            <div>
+                                <h3>Print Design</h3>
+                                <p>Print</p>
+                            </div>
+
+                            <span class="project-arrow">↗</span>
+                        </div>
+                    </article>
+
+
+                    <article
+                        class="project reveal"
+                        data-category="design"
+                    >
+                        <div class="project-image">
+                            <img
+                                src="assets/project3.jpeg"
+                                alt="Graphic design project"
+                            >
+                            <span class="project-number">03</span>
+                        </div>
+
+                        <div class="project-info">
+                            <div>
+                                <h3>Creative Design</h3>
+                                <p>Design</p>
+                            </div>
+
+                            <span class="project-arrow">↗</span>
+                        </div>
+                    </article>
+
+
+                    <article
+                        class="project reveal"
+                        data-category="branding"
+                    >
+                        <div class="project-image">
+                            <img
+                                src="assets/project4.jpeg"
+                                alt="Visual identity project"
+                            >
+                            <span class="project-number">04</span>
+                        </div>
+
+                        <div class="project-info">
+                            <div>
+                                <h3>Visual Identity</h3>
+                                <p>Branding</p>
+                            </div>
+
+                            <span class="project-arrow">↗</span>
+                        </div>
+                    </article>
+
+
+                    <article
+                        class="project reveal"
+                        data-category="print"
+                    >
+                        <div class="project-image">
+                            <img
+                                src="assets/project5.jpeg"
+                                alt="Print campaign project"
+                            >
+                            <span class="project-number">05</span>
+                        </div>
+
+                        <div class="project-info">
+                            <div>
+                                <h3>Print Campaign</h3>
+                                <p>Print</p>
+                            </div>
+
+                            <span class="project-arrow">↗</span>
+                        </div>
+                    </article>
+
+
+                    <article
+                        class="project reveal"
+                        data-category="design"
+                    >
+                        <div class="project-image">
+                            <img
+                                src="assets/project6.jpeg"
+                                alt="Graphic design project"
+                            >
+                            <span class="project-number">06</span>
+                        </div>
+
+                        <div class="project-info">
+                            <div>
+                                <h3>Creative Direction</h3>
+                                <p>Design</p>
+                            </div>
+
+                            <span class="project-arrow">↗</span>
+                        </div>
+                    </article>
+
+
+                    <article
+                        class="project reveal"
+                        data-category="branding"
+                    >
+                        <div class="project-image">
+                            <img
+                                src="assets/project7.jpeg"
+                                alt="Brand development project"
+                            >
+                            <span class="project-number">07</span>
+                        </div>
+
+                        <div class="project-info">
+                            <div>
+                                <h3>Brand Development</h3>
+                                <p>Branding</p>
+                            </div>
+
+                            <span class="project-arrow">↗</span>
+                        </div>
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CTA
+        ========================== -->
+
+        <section class="cta section">
+
+            <div class="container">
+
+                <div class="cta-box reveal">
+
+                    <div class="cta-decoration">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <span class="eyebrow">
+                        ✦ HAVE A PROJECT?
+                    </span>
+
+                    <h2>
+                        Let's make your brand
+                        <span>impossible to ignore.</span>
+                    </h2>
+
+                    <p>
+                        Tell us what you're working on and let's
+                        create something people remember.
+                    </p>
+
+                    <a href="#contact" class="btn btn-light">
+                        Start a conversation
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CONTACT
+        ========================== -->
+
+        <section class="contact section" id="contact">
+
+            <div class="container">
+
+                <div class="contact-grid">
+
+                    <div class="contact-intro reveal">
+
+                        <span class="eyebrow">
+                            ✦ CONTACT
+                        </span>
+
+                        <h2>
+                            Let's create
+                            <span>something great.</span>
+                        </h2>
+
+                        <p>
+                            Ready to bring your idea to life?
+                            Reach out and let's talk about your
+                            next design, printing or branding project.
+                        </p>
+
+                    </div>
+
+
+                    <div class="contact-details reveal">
+
+                        <a
+                            href="mailto:aidenpacegraphics@gmail.com"
+                            class="contact-item"
+                        >
+                            <span class="contact-icon">
+                                <i class="fa-solid fa-envelope"></i>
+                            </span>
+
+                            <span class="contact-text">
+                                <small>Email</small>
+                                <strong>
+                                    aidenpacegraphics@gmail.com
+                                </strong>
+                            </span>
+
+                            <i class="fa-solid fa-arrow-up-right"></i>
+                        </a>
+
+
+                        <a
+                            href="https://wa.me/254740752833"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="contact-item"
+                        >
+                            <span class="contact-icon">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </span>
+
+                            <span class="contact-text">
+                                <small>WhatsApp</small>
+                                <strong>
+                                    0740 752 833
+                                </strong>
+                            </span>
+
+                            <i class="fa-solid fa-arrow-up-right"></i>
+                        </a>
+
+
+                        <a
+                            href="https://wa.me/254740880180"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="contact-item"
+                        >
+                            <span class="contact-icon">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </span>
+
+                            <span class="contact-text">
+                                <small>WhatsApp</small>
+                                <strong>
+                                    0740 880 180
+                                </strong>
+                            </span>
+
+                            <i class="fa-solid fa-arrow-up-right"></i>
+                        </a>
+
+
+                        <a
+                            href="https://www.google.com/maps"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="contact-item"
+                        >
+                            <span class="contact-icon">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </span>
+
+                            <span class="contact-text">
+                                <small>Location</small>
+                                <strong>
+                                    Nairobi, Kenya
+                                </strong>
+                            </span>
+
+                            <i class="fa-solid fa-arrow-up-right"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-top">
+
+                <a href="#home" class="logo footer-logo">
+
+                    <img
+                        src="assets/logo.jpeg"
+                        alt="Aiden Pace Graphics logo"
+                    >
+
+                    <span>
+                        <strong>AIDEN PACE</strong>
+                        <small>GRAPHICS</small>
+                    </span>
+
+                </a>
+
+
+                <p>
+                    Design • Print • Brand
+                </p>
+
+
+                <div class="footer-socials">
+
+                    <a
+                        href="https://instagram.com/aidenpacegraphics"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Instagram"
+                    >
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a
+                        href="#"
+                        aria-label="TikTok"
+                    >
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+
+                    <a
+                        href="https://wa.me/254740752833"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="WhatsApp"
+                    >
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <span>
+                    © 2026 Aiden Pace Graphics. All rights reserved.
+                </span>
+
+                <span>
+                    Creativity at its Peak.
+                </span>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         FLOATING CONTACT DOCK
+    ========================== -->
+
+    <div class="floating-dock">
+
+        <a
+            href="https://wa.me/254740752833"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp"
+        >
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+
+        <a
+            href="https://instagram.com/aidenpacegraphics"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+        >
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+
+        <a
+            href="mailto:aidenpacegraphics@gmail.com"
+            aria-label="Email"
+        >
+            <i class="fa-solid fa-envelope"></i>
+        </a>
+
+    </div>
+
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
+```
