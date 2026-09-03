@@ -25,6 +25,30 @@ if (savedTheme) {
     setTheme(prefersDark ? "dark" : "light");
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  const themeToggle = document.getElementById("themeToggle");
+
+  function setTheme(theme) {
+    localStorage.setItem("aiden-theme", theme);
+    document.body.classList.toggle("dark", theme === "dark");
+    themeToggle.innerHTML = theme === "dark"
+      ? '<i class="fa-solid fa-sun"></i>'
+      : '<i class="fa-solid fa-moon"></i>';
+    themeToggle.setAttribute("aria-label", theme === "dark" ? "Switch to light mode" : "Switch to dark mode");
+  }
+
+  const savedTheme = localStorage.getItem("aiden-theme");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  setTheme(savedTheme || (prefersDark ? "dark" : "light"));
+
+  themeToggle.addEventListener("click", () => {
+    const currentTheme = document.body.classList.contains("dark") ? "dark" : "light";
+    setTheme(currentTheme === "dark" ? "light" : "dark");
+  });
+});
+
+
 // Toggle on click
 themeToggle.addEventListener("click", () => {
     const currentTheme = document.body.classList.contains("dark") ? "dark" : "light";
