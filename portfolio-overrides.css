@@ -1,0 +1,79 @@
+/* Portfolio overrides — responsive two-column layout for 7 items */
+
+/* Ensure the projects grid uses two columns on larger screens and 1 column on small screens */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(16px, 2.5vw, 32px);
+  align-items: start;
+}
+
+/* Make any `.large` project span both columns where present */
+.project.large {
+  grid-column: span 2;
+}
+
+/* image container keeps consistent aspect ratio and scales */
+.project-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius, 28px);
+  aspect-ratio: 4 / 3;
+  min-height: clamp(140px, 20vw, 420px);
+  background: var(--surface, #ffffff);
+}
+
+/* make images fill and crop as needed */
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+.project:hover .project-image img {
+  transform: scale(1.03);
+}
+
+/* project info spacing */
+.project-info {
+  padding-top: 12px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-direction: column;
+}
+
+/* Optional — center the last odd item by spanning both columns (keeps layout balanced for 7 items). Remove if not wanted */
+.projects .project:last-child {
+  grid-column: 1 / -1;
+  justify-self: center;
+  max-width: min(760px, 92%);
+}
+
+/* Responsive breakpoints */
+@media (max-width: 900px) {
+  .project-image {
+    aspect-ratio: 16 / 10;
+    min-height: clamp(140px, 24vw, 360px);
+  }
+}
+
+@media (max-width: 600px) {
+  .projects {
+    grid-template-columns: 1fr; /* single column on phones */
+    gap: 18px;
+  }
+
+  .project-image {
+    aspect-ratio: 3 / 2;
+    min-height: clamp(120px, 36vw, 280px);
+  }
+
+  /* restore normal flow for last child on single column */
+  .projects .project:last-child {
+    grid-column: auto;
+    max-width: none;
+  }
+}
