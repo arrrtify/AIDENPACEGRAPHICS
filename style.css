@@ -134,6 +134,27 @@ body.dark .mobile-menu a:hover {
 body {
     transition: background-color 0.4s ease, color 0.4s ease;
 }
+body.dark {
+  background-color: #121212;
+  color: #e0e0e0;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+body.dark h1, body.dark h2, body.dark h3 {
+  color: #ffffff;
+}
+
+body.dark a { color: #64b5f6; }
+body.dark a:hover { color: #bbdefb; }
+
+body.dark .header { background-color: #1e1e1e; }
+
+body.dark button, body.dark .btn {
+  background-color: #2c2c2c;
+  color: #f5f5f5;
+  border: 1px solid #444;
+}
+body.dark button:hover { background-color: #3d3d3d; }
 
 
 
