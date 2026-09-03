@@ -1,38 +1,98 @@
+```javascript
 /* =========================================
-   DARK / LIGHT MODE
+   AIDEN PACE GRAPHICS
+   MAIN JAVASCRIPT
 ========================================= */
 
-const themeToggle =
-    document.getElementById("themeToggle");
 
-const savedTheme =
-    localStorage.getItem("aiden-theme");
+/* =========================================
+   THEME
+========================================= */
 
-if (savedTheme === "dark") {
+const themeToggle = document.getElementById("themeToggle");
+const themeIcon = themeToggle.querySelector("i");
 
-    document.body.classList.add("dark");
+const savedTheme = localStorage.getItem("aiden-theme");
 
-    themeToggle.innerHTML =
-        '<i class="fa-solid fa-sun"></i>';
+if (savedTheme) {
+    document.documentElement.setAttribute(
+        "data-theme",
+        savedTheme
+    );
+} else {
+    const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+    ).matches;
 
+    if (prefersDark) {
+        document.documentElement.setAttribute(
+            "data-theme",
+            "dark"
+        );
+    }
 }
+
+
+function updateThemeButton() {
+
+    const currentTheme =
+        document.documentElement.getAttribute("data-theme");
+
+    if (currentTheme === "dark") {
+
+        themeIcon.className = "fa-solid fa-sun";
+
+        themeToggle.setAttribute(
+            "aria-label",
+            "Switch to light mode"
+        );
+
+        themeToggle.setAttribute(
+            "title",
+            "Switch to light mode"
+        );
+
+    } else {
+
+        themeIcon.className = "fa-solid fa-moon";
+
+        themeToggle.setAttribute(
+            "aria-label",
+            "Switch to dark mode"
+        );
+
+        themeToggle.setAttribute(
+            "title",
+            "Switch to dark mode"
+        );
+    }
+}
+
+
+updateThemeButton();
 
 
 themeToggle.addEventListener("click", () => {
 
-    document.body.classList.toggle("dark");
+    const currentTheme =
+        document.documentElement.getAttribute("data-theme");
 
-    const darkMode =
-        document.body.classList.contains("dark");
+    const newTheme =
+        currentTheme === "dark"
+            ? "light"
+            : "dark";
+
+    document.documentElement.setAttribute(
+        "data-theme",
+        newTheme
+    );
 
     localStorage.setItem(
         "aiden-theme",
-        darkMode ? "dark" : "light"
+        newTheme
     );
 
-    themeToggle.innerHTML = darkMode
-        ? '<i class="fa-solid fa-sun"></i>'
-        : '<i class="fa-solid fa-moon"></i>';
+    updateThemeButton();
 
 });
 
@@ -41,114 +101,140 @@ themeToggle.addEventListener("click", () => {
    MOBILE MENU
 ========================================= */
 
-const menuButton =
-    document.getElementById("menuButton");
+const menuToggle =
+    document.getElementById("menuToggle");
 
 const mobileMenu =
     document.getElementById("mobileMenu");
 
-const closeMenu =
-    document.getElementById("closeMenu");
+const mobileLinks =
+    mobileMenu.querySelectorAll("a");
 
 
-menuButton.addEventListener("click", () => {
+menuToggle.addEventListener("click", () => {
 
-    mobileMenu.classList.add("active");
+    const isOpen =
+        mobileMenu.classList.toggle("open");
 
-    document.body.style.overflow = "hidden";
+    document.body.classList.toggle(
+        "menu-open",
+        isOpen
+    );
+
+    menuToggle.setAttribute(
+        "aria-expanded",
+        isOpen
+    );
+
+    menuToggle.setAttribute(
+        "aria-label",
+        isOpen
+            ? "Close menu"
+            : "Open menu"
+    );
 
 });
 
 
-closeMenu.addEventListener("click", () => {
+mobileLinks.forEach(link => {
 
-    mobileMenu.classList.remove("active");
+    link.addEventListener("click", () => {
 
-    document.body.style.overflow = "";
+        mobileMenu.classList.remove("open");
 
-});
+        document.body.classList.remove(
+            "menu-open"
+        );
 
+        menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+        );
 
-/* Close menu when link is clicked */
-
-document
-    .querySelectorAll(".mobile-menu a")
-    .forEach(link => {
-
-        link.addEventListener("click", () => {
-
-            mobileMenu.classList.remove("active");
-
-            document.body.style.overflow = "";
-
-        });
+        menuToggle.setAttribute(
+            "aria-label",
+            "Open menu"
+        );
 
     });
+
+});
+
+
+/* =========================================
+   HEADER SCROLL EFFECT
+========================================= */
+
+const header =
+    document.getElementById("siteHeader");
+
+
+function handleHeaderScroll() {
+
+    if (window.scrollY > 20) {
+        header.classList.add("scrolled");
+    } else {
+        header.classList.remove("scrolled");
+    }
+
+}
+
+
+window.addEventListener(
+    "scroll",
+    handleHeaderScroll
+);
+
+handleHeaderScroll();
 
 
 /* =========================================
    PORTFOLIO FILTER
 ========================================= */
 
-const filters =
-    document.querySelectorAll(".filter");
+const filterButtons =
+    document.querySelectorAll(".filter-btn");
 
 const projects =
     document.querySelectorAll(".project");
 
 
-filters.forEach(filter => {
+filterButtons.forEach(button => {
 
-    filter.addEventListener("click", () => {
+    button.addEventListener("click", () => {
 
-        filters.forEach(item => {
+        const filter =
+            button.dataset.filter;
 
-            item.classList.remove("active");
 
+        /* Active button */
+
+        filterButtons.forEach(btn => {
+            btn.classList.remove("active");
         });
 
-        filter.classList.add("active");
+        button.classList.add("active");
 
-        const category =
-            filter.dataset.filter;
 
+        /* Filter projects */
 
         projects.forEach(project => {
 
-            const projectCategory =
+            const category =
                 project.dataset.category;
 
+            const shouldShow =
+                filter === "all" ||
+                category === filter;
 
-            if (
-                category === "all" ||
-                projectCategory === category
-            ) {
-
-                project.style.display = "";
-
-                setTimeout(() => {
-
-                    project.style.opacity = "1";
-                    project.style.transform =
-                        "translateY(0)";
-
-                }, 20);
-
-            }
-
-            else {
-
-                project.style.opacity = "0";
-
-                project.style.transform =
-                    "translateY(20px)";
-
-                setTimeout(() => {
-
-                    project.style.display = "none";
-
-                }, 250);
-
+            if (shouldShow) {
+                project.classList.remove(
+                    "is-hidden"
+                );
+            } else {
+                project.classList.add(
+                    "is-hidden"
+                );
             }
 
         });
@@ -163,12 +249,10 @@ filters.forEach(filter => {
 ========================================= */
 
 const revealElements =
-    document.querySelectorAll(
-        ".project, .capability, .about-text, .about-stats"
-    );
+    document.querySelectorAll(".reveal");
 
 
-const observer =
+const revealObserver =
     new IntersectionObserver(
         entries => {
 
@@ -180,87 +264,144 @@ const observer =
                         "revealed"
                     );
 
+                    revealObserver.unobserve(
+                        entry.target
+                    );
+
                 }
 
             });
 
         },
-
         {
             threshold: 0.12
         }
-
     );
 
 
 revealElements.forEach(element => {
 
-    element.style.opacity = "0";
-
-    element.style.transform =
-        "translateY(25px)";
-
-    element.style.transition =
-        "opacity .7s ease, transform .7s ease";
-
-    observer.observe(element);
-
-});
-
-
-/* Add revealed style dynamically */
-
-const revealStyle =
-    document.createElement("style");
-
-revealStyle.innerHTML = `
-
-    .revealed {
-        opacity: 1 !important;
-        transform: translateY(0) !important;
-    }
-
-`;
-
-document.head.appendChild(revealStyle);
-
-
-/* =========================================
-   HEADER BACKGROUND ON SCROLL
-========================================= */
-
-const header =
-    document.querySelector(".header");
-
-
-window.addEventListener("scroll", () => {
-
-    if (window.scrollY > 50) {
-
-        header.style.boxShadow =
-            "0 10px 40px rgba(0,0,0,.08)";
-
-    } else {
-
-        header.style.boxShadow = "none";
-
-    }
+    revealObserver.observe(element);
 
 });
 
 
 /* =========================================
-   CLOSE MOBILE MENU WITH ESC
+   ACTIVE NAVIGATION
 ========================================= */
 
-document.addEventListener("keydown", event => {
+const sections =
+    document.querySelectorAll(
+        "main section[id]"
+    );
 
-    if (event.key === "Escape") {
+const navLinks =
+    document.querySelectorAll(
+        ".desktop-nav .nav-link"
+    );
 
-        mobileMenu.classList.remove("active");
 
-        document.body.style.overflow = "";
+const sectionObserver =
+    new IntersectionObserver(
+        entries => {
 
-    }
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    const currentId =
+                        entry.target.getAttribute(
+                            "id"
+                        );
+
+                    navLinks.forEach(link => {
+
+                        link.classList.remove(
+                            "active"
+                        );
+
+                        if (
+                            link.getAttribute(
+                                "href"
+                            ) === `#${currentId}`
+                        ) {
+                            link.classList.add(
+                                "active"
+                            );
+                        }
+
+                    });
+
+                }
+
+            });
+
+        },
+        {
+            rootMargin: "-35% 0px -55% 0px"
+        }
+    );
+
+
+sections.forEach(section => {
+
+    sectionObserver.observe(section);
 
 });
+
+
+/* =========================================
+   IMAGE FALLBACK
+========================================= */
+
+document.querySelectorAll(
+    ".project-image img, .hero-card img"
+).forEach(image => {
+
+    image.addEventListener(
+        "error",
+        () => {
+
+            image.style.display = "none";
+
+            image.parentElement.classList.add(
+                "image-missing"
+            );
+
+        }
+    );
+
+});
+
+
+/* =========================================
+   CLOSE MENU WITH ESCAPE
+========================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Escape" &&
+            mobileMenu.classList.contains("open")
+        ) {
+
+            mobileMenu.classList.remove(
+                "open"
+            );
+
+            document.body.classList.remove(
+                "menu-open"
+            );
+
+            menuToggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        }
+
+    }
+);
+```
