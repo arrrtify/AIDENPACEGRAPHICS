@@ -1,21 +1,44 @@
+
 /* =========================================
-   DARK / LIGHT MODE
+   DARK / LIGHT MODE (Improved)
 ========================================= */
 
-const themeToggle =
-    document.getElementById("themeToggle");
+const themeToggle = document.getElementById("themeToggle");
 
-const savedTheme =
-    localStorage.getItem("aiden-theme");
-
-if (savedTheme === "dark") {
-
-    document.body.classList.add("dark");
-
-    themeToggle.innerHTML =
-        '<i class="fa-solid fa-sun"></i>';
-
+// Helper: Save theme to localStorage
+function setTheme(theme) {
+    localStorage.setItem("aiden-theme", theme);
+    document.body.classList.toggle("dark", theme === "dark");
+    themeToggle.innerHTML = theme === "dark"
+        ? '<i class="fa-solid fa-sun"></i>'
+        : '<i class="fa-solid fa-moon"></i>';
+    themeToggle.setAttribute("aria-label", theme === "dark" ? "Switch to light mode" : "Switch to dark mode");
 }
+
+// Load saved theme or system preference
+const savedTheme = localStorage.getItem("aiden-theme");
+const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+if (savedTheme) {
+    setTheme(savedTheme);
+} else {
+    setTheme(prefersDark ? "dark" : "light");
+}
+
+// Toggle on click
+themeToggle.addEventListener("click", () => {
+    const currentTheme = document.body.classList.contains("dark") ? "dark" : "light";
+    setTheme(currentTheme === "dark" ? "light" : "dark");
+});
+
+/* =========================================
+   Smooth Transition (CSS required)
+========================================= */
+/* Add this to your CSS file:
+body {
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+*/
 
 
 themeToggle.addEventListener("click", () => {
