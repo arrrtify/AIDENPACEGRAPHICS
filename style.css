@@ -1857,3 +1857,17 @@ footer {
     }
 
 }
+/* Portfolio Grid Layout */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px; /* spacing between items */
+}
+
+/* Uniform Project Images */
+.project img {
+  width: 100%;          /* fill container width */
+  height: 300px;        /* fixed uniform height */
+  object-fit: cover;    /* crop proportionally */
+  border-radius: 8px;   /* optional rounded corners */
+}
