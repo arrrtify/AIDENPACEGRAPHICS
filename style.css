@@ -1857,16 +1857,22 @@ footer {
     }
 
 }
-/* Portfolio Grid Layout */
-.portfolio-grid {
+/* Portfolio Grid under Articles */
+#articles .portfolio-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(3, 1fr); /* 3 items per row */
   gap: 20px; /* spacing between items */
+  margin-top: 30px;
 }
 
 /* Uniform Project Images */
-.project img {
-  width: 100%;          /* fill container width */
+#articles .project img {
+  width: 100%;
+  height: 250px;       /* fixed height for consistency */
+  object-fit: cover;   /* crop proportionally */
+  border-radius: 8px;  /* optional rounded corners */
+}
+
   height: 300px;        /* fixed uniform height */
   object-fit: cover;    /* crop proportionally */
   border-radius: 8px;   /* optional rounded corners */
