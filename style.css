@@ -64,20 +64,77 @@ button {
 
 
 /* =========================================
-   DARK MODE
+   DARK MODE STYLES
 ========================================= */
 
 body.dark {
-
-    --background: #0d0d0e;
-    --surface: #171719;
-    --black: #f4f4f2;
-    --white: #ffffff;
-
-    --muted: #a4a4a4;
-
-    --border: rgba(255, 255, 255, 0.15);
+    background-color: #121212;   /* Deep dark background */
+    color: #e0e0e0;             /* Light text for readability */
 }
+
+/* Headings */
+body.dark h1, 
+body.dark h2, 
+body.dark h3, 
+body.dark h4, 
+body.dark h5, 
+body.dark h6 {
+    color: #ffffff;             /* Pure white headings */
+}
+
+/* Links */
+body.dark a {
+    color: #64b5f6;             /* Soft blue links */
+    transition: color 0.3s ease;
+}
+body.dark a:hover {
+    color: #bbdefb;             /* Lighter blue on hover */
+}
+
+/* Header / Navbar */
+body.dark .header {
+    background-color: #1e1e1e;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.6);
+}
+
+/* Buttons */
+body.dark button,
+body.dark .btn {
+    background-color: #2c2c2c;
+    color: #f5f5f5;
+    border: 1px solid #444;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+body.dark button:hover,
+body.dark .btn:hover {
+    background-color: #3d3d3d;
+    color: #ffffff;
+}
+
+/* Portfolio / Cards */
+body.dark .project,
+body.dark .card {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    color: #ddd;
+}
+
+/* Mobile Menu */
+body.dark .mobile-menu {
+    background-color: #181818;
+}
+body.dark .mobile-menu a {
+    color: #e0e0e0;
+}
+body.dark .mobile-menu a:hover {
+    color: #64b5f6;
+}
+
+/* Smooth transition for theme switch */
+body {
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
 
 
 /* =========================================
