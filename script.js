@@ -1,343 +1,148 @@
-/* =====================================================
+/* ================================
    AIDEN PACE GRAPHICS
    MAIN JAVASCRIPT
-===================================================== */
-
-
-/* =====================================================
-   DOM READY
-===================================================== */
+================================ */
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    /* ================================
+       THEME
+    ================================= */
 
-    /* =================================================
-       ELEMENTS
-    ================================================= */
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = document.getElementById("themeIcon");
 
-    const body =
-        document.body;
+    function updateThemeIcon() {
 
-    const header =
-        document.getElementById("header");
+        const currentTheme =
+            document.documentElement.getAttribute("data-theme");
 
-    const themeToggle =
-        document.getElementById("themeToggle");
-
-    const menuButton =
-        document.getElementById("menuButton");
-
-    const closeMenu =
-        document.getElementById("closeMenu");
-
-    const mobileMenu =
-        document.getElementById("mobileMenu");
-
-    const mobileLinks =
-        document.querySelectorAll(
-            ".mobile-menu-content a"
-        );
-
-    const themeMeta =
-        document.querySelector(
-            'meta[name="theme-color"]'
-        );
-
-
-    /* =================================================
-       DARK / LIGHT MODE
-    ================================================= */
-
-    const savedTheme =
-        localStorage.getItem(
-            "aiden-theme"
-        );
-
-
-    const systemDark =
-        window.matchMedia(
-            "(prefers-color-scheme: dark)"
-        ).matches;
-
-
-    /*
-       Priority:
-
-       1. User's saved choice
-       2. System preference
-       3. Light mode
-    */
-
-    let initialDarkMode;
-
-
-    if (savedTheme === "dark") {
-
-        initialDarkMode = true;
-
-    }
-
-    else if (savedTheme === "light") {
-
-        initialDarkMode = false;
-
-    }
-
-    else {
-
-        initialDarkMode = systemDark;
-
-    }
-
-
-    applyTheme(initialDarkMode, false);
-
-
-    /* =================================================
-       THEME FUNCTION
-    ================================================= */
-
-    function applyTheme(
-        darkMode,
-        saveChoice = true
-    ) {
-
-        body.classList.toggle(
-            "dark",
-            darkMode
-        );
-
-
-        if (themeToggle) {
-
-            themeToggle.innerHTML =
-                darkMode
-
-                    ? '<i class="fa-solid fa-sun"></i>'
-
-                    : '<i class="fa-solid fa-moon"></i>';
-
-
+        if (currentTheme === "dark") {
+            themeIcon.textContent = "☀";
             themeToggle.setAttribute(
                 "aria-label",
-                darkMode
-                    ? "Switch to light mode"
-                    : "Switch to dark mode"
+                "Switch to light mode"
             );
-
-
             themeToggle.setAttribute(
                 "title",
-                darkMode
-                    ? "Switch to light mode"
-                    : "Switch to dark mode"
+                "Switch to light mode"
             );
-
-        }
-
-
-        if (themeMeta) {
-
-            themeMeta.setAttribute(
-                "content",
-                darkMode
-                    ? "#090a0d"
-                    : "#f5f5f2"
+        } else {
+            themeIcon.textContent = "☾";
+            themeToggle.setAttribute(
+                "aria-label",
+                "Switch to dark mode"
             );
-
-        }
-
-
-        if (saveChoice) {
-
-            localStorage.setItem(
-                "aiden-theme",
-                darkMode
-                    ? "dark"
-                    : "light"
+            themeToggle.setAttribute(
+                "title",
+                "Switch to dark mode"
             );
-
         }
-
     }
 
 
-    /* =================================================
-       THEME TOGGLE
-    ================================================= */
+    updateThemeIcon();
+
 
     if (themeToggle) {
 
-        themeToggle.addEventListener(
-            "click",
-            () => {
+        themeToggle.addEventListener("click", () => {
 
-                const darkMode =
-                    !body.classList.contains(
-                        "dark"
-                    );
+            const currentTheme =
+                document.documentElement.getAttribute("data-theme");
 
+            if (currentTheme === "dark") {
 
-                applyTheme(
-                    darkMode,
-                    true
+                document.documentElement.removeAttribute(
+                    "data-theme"
                 );
 
-            }
-        );
+                localStorage.setItem(
+                    "aiden-theme",
+                    "light"
+                );
 
+            } else {
+
+                document.documentElement.setAttribute(
+                    "data-theme",
+                    "dark"
+                );
+
+                localStorage.setItem(
+                    "aiden-theme",
+                    "dark"
+                );
+            }
+
+            updateThemeIcon();
+        });
     }
 
 
-    /* =================================================
-       FOLLOW SYSTEM THEME
-       ONLY IF USER HAS NOT MANUALLY
-       CHOSEN A THEME
-    ================================================= */
+    /* ================================
+       MOBILE MENU
+    ================================= */
 
-    const colorScheme =
-        window.matchMedia(
-            "(prefers-color-scheme: dark)"
-        );
+    const menuButton = document.getElementById("menuButton");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const closeMenu = document.getElementById("closeMenu");
 
+    function openMenu() {
 
-    colorScheme.addEventListener(
-        "change",
-        event => {
+        if (!mobileMenu) return;
 
-            const storedTheme =
-                localStorage.getItem(
-                    "aiden-theme"
-                );
-
-
-            if (
-                storedTheme !== "dark" &&
-                storedTheme !== "light"
-            ) {
-
-                applyTheme(
-                    event.matches,
-                    false
-                );
-
-            }
-
-        }
-    );
-
-
-    /* =================================================
-       MOBILE MENU — OPEN
-    ================================================= */
-
-    function openMobileMenu() {
-
-        if (!mobileMenu) {
-            return;
-        }
-
-
-        mobileMenu.classList.add(
-            "active"
-        );
-
-
-        body.classList.add(
-            "menu-open"
-        );
-
-
-        mobileMenu.setAttribute(
-            "aria-hidden",
-            "false"
-        );
-
+        mobileMenu.classList.add("open");
 
         if (menuButton) {
-
             menuButton.setAttribute(
                 "aria-expanded",
                 "true"
             );
-
         }
 
+        document.body.style.overflow = "hidden";
     }
 
 
-    /* =================================================
-       MOBILE MENU — CLOSE
-    ================================================= */
-
     function closeMobileMenu() {
 
-        if (!mobileMenu) {
-            return;
-        }
+        if (!mobileMenu) return;
 
-
-        mobileMenu.classList.remove(
-            "active"
-        );
-
-
-        body.classList.remove(
-            "menu-open"
-        );
-
-
-        mobileMenu.setAttribute(
-            "aria-hidden",
-            "true"
-        );
-
+        mobileMenu.classList.remove("open");
 
         if (menuButton) {
-
             menuButton.setAttribute(
                 "aria-expanded",
                 "false"
             );
-
         }
 
+        document.body.style.overflow = "";
     }
 
-
-    /* =================================================
-       MENU BUTTON
-    ================================================= */
 
     if (menuButton) {
-
-        menuButton.addEventListener(
-            "click",
-            openMobileMenu
-        );
-
+        menuButton.addEventListener("click", openMenu);
     }
 
 
-    /* =================================================
-       CLOSE BUTTON
-    ================================================= */
-
     if (closeMenu) {
-
         closeMenu.addEventListener(
             "click",
             closeMobileMenu
         );
-
     }
 
 
-    /* =================================================
-       CLOSE MENU AFTER CLICKING LINK
-    ================================================= */
+    /* Close menu after clicking a link */
 
-    mobileLinks.forEach(link => {
+    const mobileLinks =
+        document.querySelectorAll(
+            "#mobileMenu a"
+        );
+
+    mobileLinks.forEach((link) => {
 
         link.addEventListener(
             "click",
@@ -347,301 +152,159 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    /* =================================================
-       CLOSE MENU WITH ESCAPE
-    ================================================= */
+    /* Close menu with Escape */
 
-    document.addEventListener(
-        "keydown",
-        event => {
+    document.addEventListener("keydown", (event) => {
 
-            if (
-                event.key === "Escape" &&
-                mobileMenu &&
-                mobileMenu.classList.contains(
-                    "active"
-                )
-            ) {
-
-                closeMobileMenu();
-
-            }
-
+        if (event.key === "Escape") {
+            closeMobileMenu();
         }
-    );
+
+    });
 
 
-    /* =================================================
-       CLOSE MENU IF CLICKING OUTSIDE CONTENT
-    ================================================= */
-
-    if (mobileMenu) {
-
-        mobileMenu.addEventListener(
-            "click",
-            event => {
-
-                if (
-                    event.target ===
-                    mobileMenu
-                ) {
-
-                    closeMobileMenu();
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =================================================
+    /* ================================
        HEADER ON SCROLL
-    ================================================= */
+    ================================= */
 
-    function updateHeader() {
-
-        if (!header) {
-            return;
-        }
+    const header =
+        document.getElementById("siteHeader");
 
 
-        if (
-            window.scrollY > 35
-        ) {
+    function handleHeader() {
 
-            header.classList.add(
-                "scrolled"
-            );
+        if (!header) return;
 
-        }
+        if (window.scrollY > 20) {
 
-        else {
+            header.classList.add("scrolled");
 
-            header.classList.remove(
-                "scrolled"
-            );
+        } else {
+
+            header.classList.remove("scrolled");
 
         }
-
     }
-
-
-    updateHeader();
 
 
     window.addEventListener(
         "scroll",
-        updateHeader,
-        {
-            passive: true
-        }
+        handleHeader,
+        { passive: true }
     );
 
 
-    /* =================================================
+    handleHeader();
+
+
+    /* ================================
        SCROLL REVEAL
-    ================================================= */
+    ================================= */
 
     const revealElements =
-        document.querySelectorAll(
-            ".about-text, " +
-            ".about-stats, " +
-            ".product-card, " +
-            ".capability, " +
-            ".cta-inner, " +
-            ".contact-grid"
-        );
+        document.querySelectorAll(".reveal");
 
 
-    revealElements.forEach(
-        element => {
-
-            element.classList.add(
-                "reveal"
-            );
-
-        }
-    );
-
-
-    if (
-        "IntersectionObserver"
-        in window
-    ) {
+    if ("IntersectionObserver" in window) {
 
         const observer =
             new IntersectionObserver(
-                entries => {
+                (entries, observerInstance) => {
 
-                    entries.forEach(
-                        entry => {
+                    entries.forEach((entry) => {
 
-                            if (
-                                entry.isIntersecting
-                            ) {
+                        if (entry.isIntersecting) {
 
-                                entry.target.classList.add(
-                                    "revealed"
-                                );
+                            entry.target.classList.add(
+                                "visible"
+                            );
 
-
-                                observer.unobserve(
-                                    entry.target
-                                );
-
-                            }
-
+                            observerInstance.unobserve(
+                                entry.target
+                            );
                         }
-                    );
+
+                    });
 
                 },
                 {
-                    threshold: 0.12,
-
-                    rootMargin:
-                        "0px 0px -40px 0px"
+                    threshold: 0.12
                 }
             );
 
 
-        revealElements.forEach(
-            element => {
+        revealElements.forEach((element) => {
 
-                observer.observe(
-                    element
-                );
+            observer.observe(element);
 
-            }
-        );
+        });
 
-    }
+    } else {
 
-    else {
+        revealElements.forEach((element) => {
 
-        revealElements.forEach(
-            element => {
+            element.classList.add("visible");
 
-                element.classList.add(
-                    "revealed"
-                );
-
-            }
-        );
+        });
 
     }
 
 
-    /* =================================================
-       IMAGE FALLBACK
-       Prevents ugly broken-image icons
-       ================================================= */
+    /* ================================
+       PRODUCT IMAGE FALLBACK
+    ================================= */
 
-    const images =
+    const productImages =
         document.querySelectorAll(
             ".product-image img"
         );
 
 
-    images.forEach(image => {
+    productImages.forEach((image) => {
 
-        image.addEventListener(
-            "error",
-            () => {
+        image.addEventListener("error", () => {
 
-                image.classList.add(
-                    "image-error"
-                );
+            const container =
+                image.closest(".product-image");
 
+            if (container) {
+                container.classList.add("empty");
             }
-        );
+
+        });
+
+
+        /*
+         * If the image has already failed before
+         * the event listener was attached.
+         */
+
+        if (image.complete && image.naturalWidth === 0) {
+
+            const container =
+                image.closest(".product-image");
+
+            if (container) {
+                container.classList.add("empty");
+            }
+        }
 
     });
 
 
-    /* =================================================
-       ACTIVE NAVIGATION
-    ================================================= */
+    /* ================================
+       CURRENT YEAR
+    ================================= */
 
-    const sections =
-        document.querySelectorAll(
-            "main section[id]"
-        );
+    const currentYear =
+        document.getElementById("currentYear");
 
 
-    const navLinks =
-        document.querySelectorAll(
-            ".desktop-nav a"
-        );
+    if (currentYear) {
 
-
-    if (
-        sections.length &&
-        navLinks.length &&
-        "IntersectionObserver"
-        in window
-    ) {
-
-        const sectionObserver =
-            new IntersectionObserver(
-                entries => {
-
-                    entries.forEach(
-                        entry => {
-
-                            if (
-                                entry.isIntersecting
-                            ) {
-
-                                navLinks.forEach(
-                                    link => {
-
-                                        link.classList.remove(
-                                            "current"
-                                        );
-
-
-                                        if (
-                                            link.getAttribute(
-                                                "href"
-                                            ) ===
-                                            "#" +
-                                            entry.target.id
-                                        ) {
-
-                                            link.classList.add(
-                                                "current"
-                                            );
-
-                                        }
-
-                                    }
-                                );
-
-                            }
-
-                        }
-                    );
-
-                },
-                {
-                    threshold: 0.35
-                }
-            );
-
-
-        sections.forEach(
-            section => {
-
-                sectionObserver.observe(
-                    section
-                );
-
-            }
-        );
+        currentYear.textContent =
+            new Date().getFullYear();
 
     }
-
 
 });
