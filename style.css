@@ -974,10 +974,11 @@ em {
 ========================================= */
 
 .work {
-
-    padding-bottom: 150px;
-
+  max-width: 1200px;   /* or any width you like */
+  margin: 0 auto;      /* centers the section */
+  padding: 0 20px;     /* adds side breathing room */
 }
+
 
 
 .work-header {
@@ -1052,16 +1053,18 @@ em {
 @media (max-width: 768px) {
 
 .projects {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* two columns on desktop */
-    gap: 25px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* two columns on desktop */
+  gap: 25px;
 }
 
+/* Collapse to one column on smaller screens */
 @media (max-width: 768px) {
   .projects {
-    grid-template-columns: 1fr; /* one column on smaller screens */
+    grid-template-columns: 1fr;
   }
 }
+
 
 
 
@@ -1071,27 +1074,15 @@ em {
 
 }
 
-
-.project-image {
-
-    position: relative;
-
-    overflow: hidden;
-
-    border-radius: var(--radius);
-
-    background: var(--surface);
-
-}
-
-
 .project-image img {
-    width: 100%;        /* fills the column */
-    height: auto;       /* adjusts height automatically */
-    object-fit: cover;  /* keeps proportions */
-    transition: transform .6s ease;
-    max-width: 100%;    /* prevents overflow */
+  width: 100%;        /* fills the column */
+  height: auto;       /* adjusts height automatically */
+  object-fit: cover;  /* crops proportionally */
+  transition: transform .6s ease;
+  max-width: 100%;    /* prevents overflow */
+  border-radius: var(--radius);
 }
+
 
 
 
