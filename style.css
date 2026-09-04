@@ -1873,3 +1873,24 @@ footer {
   border-radius: 8px;  /* optional rounded corners */
 }
 
+/* Filters layout */
+.filters {
+  display: flex;
+  flex-direction: column; /* stack buttons vertically */
+  align-items: flex-start; /* align to the left */
+  gap: 10px; /* spacing between buttons */
+}
+
+/* Filter buttons */
+.filter {
+  padding: 10px 20px;
+  border: none;
+  background-color: #eee;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.filter.active {
+  background-color: #333;
+  color: #fff;
+}
