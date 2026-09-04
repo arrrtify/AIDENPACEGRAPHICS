@@ -1049,16 +1049,20 @@ em {
 
 }
 
+@media (max-width: 768px) {
 
 .projects {
-
     display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 55px 25px;
-
+    grid-template-columns: repeat(2, 1fr); /* two columns on desktop */
+    gap: 25px;
 }
+
+@media (max-width: 768px) {
+  .projects {
+    grid-template-columns: 1fr; /* one column on smaller screens */
+  }
+}
+
 
 
 .project.large {
@@ -1082,16 +1086,13 @@ em {
 
 
 .project-image img {
-
-    width: 100%;
-
-    aspect-ratio: 4 / 3;
-
-    object-fit: cover;
-
+    width: 100%;        /* fills the column */
+    height: auto;       /* adjusts height automatically */
+    object-fit: cover;  /* keeps proportions */
     transition: transform .6s ease;
-
+    max-width: 100%;    /* prevents overflow */
 }
+
 
 
 .project.large .project-image img {
