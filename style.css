@@ -973,85 +973,55 @@ em {
    WORK
 ========================================= */
 
+/* ================= WORK ================= */
+
 .work {
-  max-width: 1200px;   /* or any width you like */
-  margin: 0 auto;      /* centers the section */
-  padding: 0 20px;     /* adds side breathing room */
+  max-width: 1200px;   /* keeps section centered */
+  margin: 0 auto;      /* centers horizontally */
+  padding: 0 20px;     /* breathing room on sides */
+  padding-bottom: 150px;
 }
-
-
 
 .work-header {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: end;
-
-    gap: 40px;
-
-    margin: 25px 0 50px;
-
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 40px;
+  margin: 25px 0 50px;
 }
-
 
 .work-header > p {
-
-    max-width: 400px;
-
-    color: var(--muted);
-
-    line-height: 1.7;
-
+  max-width: 400px;
+  color: var(--muted);
+  line-height: 1.7;
 }
 
-
+/* Filters */
 .filters {
-
-    display: flex;
-
-    gap: 10px;
-
-    margin-bottom: 40px;
-
-    flex-wrap: wrap;
-
+  display: flex;
+  flex-direction: column; /* stack vertically */
+  gap: 10px;
+  margin-bottom: 40px;
 }
-
 
 .filter {
-
-    border: 1px solid var(--border);
-
-    background: transparent;
-
-    color: var(--black);
-
-    padding: 10px 20px;
-
-    border-radius: 50px;
-
-    cursor: pointer;
-
-    transition: .3s;
-
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--black);
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: .3s;
 }
-
 
 .filter.active,
 .filter:hover {
-
-    background: var(--blue);
-
-    color: white;
-
-    border-color: var(--blue);
-
+  background: var(--blue);
+  color: white;
+  border-color: var(--blue);
 }
 
-@media (max-width: 768px) {
-
+/* Projects Grid */
 .projects {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* two columns on desktop */
@@ -1065,100 +1035,70 @@ em {
   }
 }
 
-
-
-
 .project.large {
+  grid-column: span 2;
+}
 
-    grid-column: span 2;
-
+/* Project Image */
+.project-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--surface);
 }
 
 .project-image img {
-  width: 100%;        /* fills the column */
-  height: auto;       /* adjusts height automatically */
-  object-fit: cover;  /* crops proportionally */
+  width: 100%;
+  height: auto;        /* responsive height */
+  object-fit: cover;   /* crop proportionally */
   transition: transform .6s ease;
-  max-width: 100%;    /* prevents overflow */
+  max-width: 100%;
   border-radius: var(--radius);
 }
 
-
-
-
 .project.large .project-image img {
-
-    aspect-ratio: 16 / 8;
-
+  aspect-ratio: 16 / 8;
 }
-
 
 .project:hover img {
-
-    transform: scale(1.05);
-
+  transform: scale(1.05);
 }
 
-
+/* Project Number */
 .project-number {
-
-    position: absolute;
-
-    top: 20px;
-    right: 20px;
-
-    width: 45px;
-    height: 45px;
-
-    border-radius: 50%;
-
-    display: grid;
-    place-items: center;
-
-    background: rgba(255,255,255,.9);
-
-    color: #111;
-
-    font-size: 12px;
-
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(255,255,255,.9);
+  color: #111;
+  font-size: 12px;
 }
 
-
+/* Project Info */
 .project-info {
-
-    padding: 20px 5px;
-
+  padding: 20px 5px;
 }
-
 
 .project-info span {
-
-    font-size: 10px;
-
-    color: var(--blue);
-
-    letter-spacing: 2px;
-
-    font-weight: 700;
-
+  font-size: 10px;
+  color: var(--blue);
+  letter-spacing: 2px;
+  font-weight: 700;
 }
-
 
 .project-info h3 {
-
-    font-family: "Space Grotesk";
-
-    font-size: clamp(25px, 3vw, 38px);
-
-    margin: 8px 0;
-
+  font-family: "Space Grotesk";
+  font-size: clamp(25px, 3vw, 38px);
+  margin: 8px 0;
 }
 
-
 .project-info p {
-
-    color: var(--muted);
-
+  color: var(--muted);
 }
 
 
