@@ -25,7 +25,10 @@
     >
 
     <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -50,13 +53,15 @@
     </nav>
 
     <div class="header-actions">
-        
-<button id="themeToggle" aria-label="Toggle dark mode">
-  <i class="fa-solid fa-moon"></i>
-</button>
 
+        <button
+            id="themeToggle"
+            class="theme-button"
+            aria-label="Toggle dark mode"
+        >
+            <i class="fa-solid fa-moon"></i>
+        </button>
 
-        
         <a href="#contact" class="contact-button">
             Get in touch
             <span>↗</span>
@@ -137,21 +142,15 @@
     </div>
 
 
-    <div class="hero-visual">
-        <div class="hero-video-container">
-    <video
-        class="hero-video"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="auto"
-    >
-        <source src="assets/generated_video.mp4" type="video/mp4">
-    </video>
-</div>
+    <div class="hero-right">
 
-       
+        <div class="hero-card">
+
+            <img
+                src="assets/project1.jpg"
+                alt="Aiden Pace Graphics design"
+            >
+
             <div class="hero-card-overlay">
 
                 <span>01 / FEATURED WORK</span>
@@ -200,31 +199,6 @@
         <b>✦</b>
 
         <span>BRAND</span>
-        <b>✦</b>
-        
-          <span>DESIGN</span>
-        <b>✦</b>
-
-        <span>PRINT</span>
-        <b>✦</b>
-
-        <span>BRAND</span>
-        <b>✦</b>
-
-        <span>CREATIVE</span>
-        <b>✦</b>
-        
-          <span>DESIGN</span>
-        <b>✦</b>
-
-        <span>PRINT</span>
-        <b>✦</b>
-
-        <span>BRAND</span>
-        <b>✦</b>
-
-        <span>CREATIVE</span>
-        <b>✦</b>
 
     </div>
 
@@ -256,7 +230,7 @@
             <p class="large-text">
                 Aiden Pace Graphics is a creative design and
                 printing company focused on making brands look
-                perfect and professional.
+                professional, memorable and ready for the real world.
             </p>
 
             <p>
@@ -335,34 +309,207 @@
             All
         </button>
 
+        <button class="filter" data-filter="branding">
+            Branding
+        </button>
+
+        <button class="filter" data-filter="print">
+            Print
+        </button>
+
+        <button class="filter" data-filter="design">
+            Design
+        </button>
+
+    </div>
+
 
     <!-- PROJECT GRID -->
 
-  <section id="articles">
+    <div class="projects">
 
-  <div class="portfolio-grid">
-    <div class="project" data-category="design">
-      <img src="assets/project1.jpeg" alt="Project 1">
+        <article
+            class="project large"
+            data-category="branding"
+        >
+
+            <div class="project-image">
+
+                <img
+                    src="assets/project1.jpg"
+                    alt="Branding project"
+                >
+
+                <div class="project-number">
+                    01
+                </div>
+
+            </div>
+
+            <div class="project-info">
+
+                <span>BRANDING</span>
+
+                <h3>
+                    Business Identity
+                </h3>
+
+                <p>
+                    Creating a strong visual identity for modern
+                    businesses.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <article
+            class="project"
+            data-category="print"
+        >
+
+            <div class="project-image">
+
+                <img
+                    src="assets/project2.jpg"
+                    alt="Print design project"
+                >
+
+                <div class="project-number">
+                    02
+                </div>
+
+            </div>
+
+            <div class="project-info">
+
+                <span>PRINT</span>
+
+                <h3>
+                    Promotional Print
+                </h3>
+
+                <p>
+                    Professional printed materials designed to
+                    make an impact.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <article
+            class="project"
+            data-category="design"
+        >
+
+            <div class="project-image">
+
+                <img
+                    src="assets/project3.jpg"
+                    alt="Graphic design project"
+                >
+
+                <div class="project-number">
+                    03
+                </div>
+
+            </div>
+
+            <div class="project-info">
+
+                <span>DESIGN</span>
+
+                <h3>
+                    Creative Graphics
+                </h3>
+
+                <p>
+                    Eye-catching graphics for personal and
+                    commercial use.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <article
+            class="project large"
+            data-category="branding"
+        >
+
+            <div class="project-image">
+
+                <img
+                    src="assets/project4.jpg"
+                    alt="Brand design project"
+                >
+
+                <div class="project-number">
+                    04
+                </div>
+
+            </div>
+
+            <div class="project-info">
+
+                <span>BRAND</span>
+
+                <h3>
+                    Complete Brand Package
+                </h3>
+
+                <p>
+                    A complete visual direction designed to
+                    bring a brand together.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <article
+            class="project"
+            data-category="print"
+        >
+
+            <div class="project-image">
+
+                <img
+                    src="assets/project5.jpg"
+                    alt="Printing project"
+                >
+
+                <div class="project-number">
+                    05
+                </div>
+
+            </div>
+
+            <div class="project-info">
+
+                <span>PRINT</span>
+
+                <h3>
+                    Custom Printing
+                </h3>
+
+                <p>
+                    High-quality printed products for brands
+                    and businesses.
+                </p>
+
+            </div>
+
+        </article>
+
     </div>
-    <div class="project" data-category="design">
-      <img src="assets/project2.jpeg" alt="Project 2">
-    </div>
-    <div class="project" data-category="print">
-      <img src="assets/project3.jpeg" alt="Project 3">
-    </div>
-    <div class="project" data-category="brand">
-      <img src="assets/project4.jpeg" alt="Project 4">
-    </div>
-    <div class="project" data-category="print">
-      <img src="assets/project5.jpeg" alt="Project 5">
-    </div>
-    <div class="project" data-category="brand">
-      <img src="assets/project6.jpeg" alt="Project 6">
-    </div>
-  </div>
+
 </section>
-
-
 
 
 <!-- ================= SERVICES / CAPABILITIES ================= -->
@@ -483,7 +630,7 @@
             <span>LET'S WORK TOGETHER</span>
 
             <h2>
-                Have a design
+                Have a project
                 <em>in mind?</em>
             </h2>
 
@@ -618,7 +765,7 @@
     <div class="footer-top">
 
         <img
-            src="logo.jpeg"
+            src="assets/logo.png"
             alt="Aiden Pace Graphics"
         >
 
@@ -633,6 +780,10 @@
 
         <span>
             © 2026 Aiden Pace Graphics
+        </span>
+
+        <span>
+            Made with creativity.
         </span>
 
     </div>
